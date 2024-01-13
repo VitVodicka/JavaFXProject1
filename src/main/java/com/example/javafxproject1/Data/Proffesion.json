@@ -1,0 +1,323 @@
+{
+  "zamestnanci": [
+    {
+      "jmeno": "Martin",
+      "prijmeni": "Kovac",
+      "plat": 60000,
+      "profese": "Inženýr elektrotechniky",
+      "mesicne": {
+        "home_payment": 20000,
+        "car_loan": 7000,
+        "credit_card_payment": 2800
+      },
+      "dluhy": {
+        "home_debt": 180000,
+        "car_debt": 22000,
+        "credit_card_debt": 8000
+      }
+    },
+    {
+      "jmeno": "Lucie",
+      "prijmeni": "Slezakova",
+      "plat": 52000,
+      "profese": "PR specialista",
+      "mesicne": {
+        "home_payment": 15000,
+        "car_loan": 5000,
+        "credit_card_payment": 2000
+      },
+      "dluhy": {
+        "home_debt": 120000,
+        "car_debt": 15000,
+        "credit_card_debt": 5000
+      }
+    },
+    {
+      "jmeno": "Tomas",
+      "prijmeni": "Hruska",
+      "plat": 70000,
+      "profese": "Letecký pilot",
+      "mesicne": {
+        "home_payment": 22000,
+        "car_loan": 8000,
+        "credit_card_payment": 3200
+      },
+      "dluhy": {
+        "home_debt": 200000,
+        "car_debt": 25000,
+        "credit_card_debt": 10000
+      }
+    },
+    {
+      "jmeno": "Petra",
+      "prijmeni": "Zajicova",
+      "plat": 58000,
+      "profese": "Psycholog",
+      "mesicne": {
+        "home_payment": 18000,
+        "car_loan": 6000,
+        "credit_card_payment": 2400
+      },
+      "dluhy": {
+        "home_debt": 160000,
+        "car_debt": 20000,
+        "credit_card_debt": 7000
+      }
+    },
+    {
+      "jmeno": "Adam",
+      "prijmeni": "Malik",
+      "plat": 45000,
+      "profese": "Gastronomický kritik",
+      "mesicne": {
+        "home_payment": 13000,
+        "car_loan": 4500,
+        "credit_card_payment": 1800
+      },
+      "dluhy": {
+        "home_debt": 100000,
+        "car_debt": 12000,
+        "credit_card_debt": 4000
+      }
+    },
+    {
+      "jmeno": "Katerina",
+      "prijmeni": "Kovarikova",
+      "plat": 65000,
+      "profese": "Veterinářka",
+      "mesicne": {
+        "home_payment": 20000,
+        "car_loan": 7000,
+        "credit_card_payment": 2800
+      },
+      "dluhy": {
+        "home_debt": 180000,
+        "car_debt": 22000,
+        "credit_card_debt": 8000
+      }
+    },
+    {
+      "jmeno": "David",
+      "prijmeni": "Krcmar",
+      "plat": 49000,
+      "profese": "Recepční v hotelu",
+      "mesicne": {
+        "home_payment": 14000,
+        "car_loan": 4800,
+        "credit_card_payment": 1900
+      },
+      "dluhy": {
+        "home_debt": 110000,
+        "car_debt": 14000,
+        "credit_card_debt": 4500
+      }
+    },
+    {
+      "jmeno": "Veronika",
+      "prijmeni": "Prochazkova",
+      "plat": 58000,
+      "profese": "Webdesigner",
+      "mesicne": {
+        "home_payment": 17000,
+        "car_loan": 5500,
+        "credit_card_payment": 2200
+      },
+      "dluhy": {
+        "home_debt": 150000,
+        "car_debt": 18000,
+        "credit_card_debt": 6000
+      }
+    },
+    {
+      "jmeno": "Jiri",
+      "prijmeni": "Havel",
+      "plat": 60000,
+      "profese": "Investiční bankéř",
+      "mesicne": {
+        "home_payment": 22000,
+        "car_loan": 8000,
+        "credit_card_payment": 3200
+      },
+      "dluhy": {
+        "home_debt": 200000,
+        "car_debt": 25000,
+        "credit_card_debt": 10000
+      }
+    },
+    {
+      "jmeno": "Simona",
+      "prijmeni": "Kralova",
+      "plat": 51000,
+      "profese": "Biotechnolog",
+      "mesicne": {
+        "home_payment": 15000,
+        "car_loan": 5000,
+        "credit_card_payment": 2000
+      },
+      "dluhy": {
+        "home_debt": 120000,
+        "car_debt": 15000,
+        "credit_card_debt": 5000
+      }
+    },{
+      "jmeno": "Filip",
+      "prijmeni": "Kadlec",
+      "plat": 67000,
+      "profese": "Automobilový designér",
+      "mesicne": {
+        "home_payment": 20000,
+        "car_loan": 7000,
+        "credit_card_payment": 2800
+      },
+      "dluhy": {
+        "home_debt": 180000,
+        "car_debt": 22000,
+        "credit_card_debt": 8000
+      }
+    },
+    {
+      "jmeno": "Martina",
+      "prijmeni": "Rybickova",
+      "plat": 53000,
+      "profese": "Výzkumný chemik",
+      "mesicne": {
+        "home_payment": 16000,
+        "car_loan": 5500,
+        "credit_card_payment": 2200
+      },
+      "dluhy": {
+        "home_debt": 130000,
+        "car_debt": 16000,
+        "credit_card_debt": 5500
+      }
+    },
+    {
+      "jmeno": "Marek",
+      "prijmeni": "Urban",
+      "plat": 59000,
+      "profese": "Sportovní novinář",
+      "mesicne": {
+        "home_payment": 17000,
+        "car_loan": 5800,
+        "credit_card_payment": 2300
+      },
+      "dluhy": {
+        "home_debt": 140000,
+        "car_debt": 18000,
+        "credit_card_debt": 6000
+      }
+    },
+    {
+      "jmeno": "Adela",
+      "prijmeni": "Pospisilova",
+      "plat": 62000,
+      "profese": "Software inženýr",
+      "mesicne": {
+        "home_payment": 19000,
+        "car_loan": 6500,
+        "credit_card_payment": 2500
+      },
+      "dluhy": {
+        "home_debt": 150000,
+        "car_debt": 20000,
+        "credit_card_debt": 7000
+      }
+    },
+    {
+      "jmeno": "Ondrej",
+      "prijmeni": "Janda",
+      "plat": 48000,
+      "profese": "Barista",
+      "mesicne": {
+        "home_payment": 13000,
+        "car_loan": 4500,
+        "credit_card_payment": 1800
+      },
+      "dluhy": {
+        "home_debt": 100000,
+        "car_debt": 12000,
+        "credit_card_debt": 4000
+      }
+    },
+    {
+      "jmeno": "Lenka",
+      "prijmeni": "Svobodova",
+      "plat": 64000,
+      "profese": "Mobilní vývojář",
+      "mesicne": {
+        "home_payment": 20000,
+        "car_loan": 7000,
+        "credit_card_payment": 2800
+      },
+      "dluhy": {
+        "home_debt": 180000,
+        "car_debt": 22000,
+        "credit_card_debt": 8000
+      }
+    },
+    {
+      "jmeno": "Pavel",
+      "prijmeni": "Strnad",
+      "plat": 51000,
+      "profese": "Zahradní architekt",
+      "mesicne": {
+        "home_payment": 15000,
+        "car_loan": 5000,
+        "credit_card_payment": 2000
+      },
+      "dluhy": {
+        "home_debt": 120000,
+        "car_debt": 15000,
+        "credit_card_debt": 5000
+      }
+    },
+    {
+      "jmeno": "Karla",
+      "prijmeni": "Novakova",
+      "plat": 60000,
+      "profese": "Lektor",
+      "mesicne": {
+        "home_payment": 18000,
+        "car_loan": 6000,
+        "credit_card_payment": 2400
+      },
+      "dluhy": {
+        "home_debt": 160000,
+        "car_debt": 20000,
+        "credit_card_debt": 7000
+      }
+    },
+    {
+      "jmeno": "Radek",
+      "prijmeni": "Kratochvil",
+      "plat": 70000,
+      "profese": "Investiční analytik",
+      "mesicne": {
+        "home_payment": 22000,
+        "car_loan": 8000,
+        "credit_card_payment": 3200
+      },
+      "dluhy": {
+        "home_debt": 200000,
+        "car_debt": 25000,
+        "credit_card_debt": 10000
+      }
+    },
+    {
+      "jmeno": "Jana",
+      "prijmeni": "Cermakova",
+      "plat": 56000,
+      "profese": "Interiérový designér",
+      "mesicne": {
+        "home_payment": 17000,
+        "car_loan": 5800,
+        "credit_card_payment": 2300
+      },
+      "dluhy": {
+        "home_debt": 140000,
+        "car_debt": 18000,
+        "credit_card_debt": 6000
+      }
+    }
+  ]
+}
