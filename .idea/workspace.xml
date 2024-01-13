@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2daa6ae9-ef9f-43d4-b4c4-55b36c91311f" name="Changes" comment="working version ?">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Data/BigDeal.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Data/Market.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Data/Proffesion.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Data/SmallDeal.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dice-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dice-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dice-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dice-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dice-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dice-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/positions.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/board.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/board.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javafxproject1/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javafxproject1/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/figures/ariplane_figure.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/airplane_figure.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/figures/car_figure.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/car_figure.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/figures/dog_figure.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dog_figure.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/figures/horse_figure.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/horse_figure.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +58,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Vít Vodička/IdeaProjects/JavaFXProject1",
+    "last_opened_file_path": "C:/Users/Vít Vodička/AppData/Local/SceneBuilder/SceneBuilder.exe",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
@@ -123,5 +116,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="working version ?" />
     <option name="LAST_COMMIT_MESSAGE" value="working version ?" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
