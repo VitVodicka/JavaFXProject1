@@ -42,9 +42,6 @@ public class Policko {
     }
 
 
-
-
-
     // Setters
     public void setX(int x) {
         this.x = x;

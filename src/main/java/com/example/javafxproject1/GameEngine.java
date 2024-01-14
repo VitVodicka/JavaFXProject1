@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
+import java.security.AllPermission;
 import java.util.*;
 
 public class GameEngine {
@@ -305,8 +306,38 @@ public class GameEngine {
                 e.printStackTrace();
             }
         }
+        typeOfPolicko(currentPolickoIndex);
+
 
     }
+    private void typeOfPolicko(int polickoindexNumber){
+
+        Policko currentPolicko = listPolicka.get(polickoindexNumber);
+        Oppurtunity op = new Oppurtunity();
+
+
+        if (currentPolicko.isBigDeal()) {
+            op.LoadBigDeal();
+        } else if (currentPolicko.isSmallDeal()) {
+            op.LoadSmallDeal();
+        } else if (currentPolicko.isNothing()) {
+        } else if (currentPolicko.isIncome()) {
+            op.LoadIncome();
+        } else if (currentPolicko.isMarket()) {
+            op.LoadMarket();
+        } else if (currentPolicko.isExpanses()) {
+            op.LoadExpenses();
+        } else if (currentPolicko.isLayoff()) {
+            op.LoadLayoff();
+        }
+
+
+
+    }
+
+
+
+
 }
 
 
