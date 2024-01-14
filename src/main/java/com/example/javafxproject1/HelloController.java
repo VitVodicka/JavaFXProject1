@@ -1,5 +1,6 @@
 package com.example.javafxproject1;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,8 +22,12 @@ import java.util.Random;
 public class HelloController {
     Random random = new Random();
     Dice dice;
+    GameEngine game;
     @FXML
     private AnchorPane storyboard;
+    @FXML
+    private Label titleLabel;
+
     @FXML
     private ImageView diceImage;
 
@@ -42,7 +47,7 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        GameEngine game = new GameEngine(player1,player2,player3,player4);
+        game = new GameEngine(player1,player2,player3,player4);
         game.launchPopUpNumberOfPlayers();
 
         dice = new Dice(diceImage);
@@ -81,27 +86,37 @@ public class HelloController {
     @FXML
     void roll() {
         diceImage.setDisable(true);
-        Thread thread = new Thread(){
-            public void run(){
-                System.out.println("Thread Running");
-                try {
-                    for (int i = 0; i < 15; i++) {
-                        File file = new File("src/main/resources/dice-" + (random.nextInt(6)+1)+".png");
-                        diceImage.setImage(new Image(file.toURI().toString()));
-                        Thread.sleep(50);
 
+        Thread thread = new Thread(() -> {
+            System.out.println("Thread Running");
+            try {
+                for (int i = 0; i < 15; i++) {
+                    File file = new File("src/main/resources/dice-" + (random.nextInt(6) + 1) + ".png");
+                    Image image = new Image(file.toURI().toString());
 
-                    }
-                    System.out.println(dice.choosingNumber());
-                    diceImage.setDisable(false);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    // Update UI on the JavaFX Application Thread
+                    Platform.runLater(() -> diceImage.setImage(image));
+                    Thread.sleep(50);
                 }
+
+                // Enable diceImage on the JavaFX Application Thread
+                Platform.runLater(() -> diceImage.setDisable(false));
+
+                // Update UI on the JavaFX Application Thread after the animation
+                Platform.runLater(() -> {
+                    titleLabel.setText(game.turnSelection());
+
+
+                });
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        };
+        });
 
         thread.start();
     }
+
 
     public void increment(ActionEvent actionEvent) {
     }

@@ -15,6 +15,7 @@ public class GameEngine {
     private ImageView player2;
     private ImageView player3;
     private ImageView player4;
+    private List<Policko> listPolicka;
     GameEngine(ImageView player1,ImageView player2,ImageView player3,ImageView player4){
         this.player1=player1;
         this.player2=player2;
@@ -22,8 +23,109 @@ public class GameEngine {
         this.player4=player4;
 
         listFigures= new ArrayList<>();
+        listPolicka= new ArrayList<>();
 
     }
+    public void generatePolicka() {
+        //region setting policka
+        Policko policko1 = new Policko();
+        policko1.setX(725);
+        policko1.setY(120);
+        policko1.setIsNothing(true);
+        listPolicka.add(policko1);
+
+        Policko policko2 = new Policko();
+        policko2.setX(830);
+        policko2.setY(120);
+        policko2.setIncome(true);
+        listPolicka.add(policko2);
+
+        Policko policko3 = new Policko();
+        policko3.setX(830);
+        policko3.setY(225);
+        policko3.setBigDeal(true);
+        listPolicka.add(policko3);
+
+        Policko policko4 = new Policko();
+        policko4.setX(830);
+        policko4.setY(330);
+        policko4.setMarket(true);
+        listPolicka.add(policko4);
+
+        Policko policko5 = new Policko();
+        policko5.setX(830);
+        policko5.setY(435);
+        policko5.setSmallDeal(true);
+        listPolicka.add(policko5);
+
+        Policko policko6 = new Policko();
+        policko6.setX(830);
+        policko6.setY(540);
+        policko6.setIncome(true);
+        listPolicka.add(policko6);
+
+        Policko policko7 = new Policko();
+        policko7.setX(725);
+        policko7.setY(540);
+        policko7.setExpanses(true);
+        listPolicka.add(policko7);
+
+        Policko policko8 = new Policko();
+        policko8.setX(620);
+        policko8.setY(540);
+        policko8.setSmallDeal(true);
+        listPolicka.add(policko8);
+
+        Policko policko9 = new Policko();
+        policko9.setX(520);
+        policko9.setY(540);
+        policko9.setMarket(true);
+        listPolicka.add(policko9);
+
+        Policko policko10 = new Policko();
+        policko10.setX(415);
+        policko10.setY(540);
+        policko10.setIncome(true);
+        listPolicka.add(policko10);
+
+        Policko policko11 = new Policko();
+        policko11.setX(415);
+        policko11.setY(435);
+        policko11.setBigDeal(true);
+        listPolicka.add(policko11);
+
+        Policko policko12 = new Policko();
+        policko12.setX(415);
+        policko12.setY(330);
+        policko12.setLayoff(true);
+        listPolicka.add(policko12);
+
+        Policko policko13 = new Policko();
+        policko13.setX(415);
+        policko13.setY(225);
+        policko13.setSmallDeal(true);
+        listPolicka.add(policko13);
+
+        Policko policko14 = new Policko();
+        policko14.setX(415);
+        policko14.setY(120);
+        policko14.setIncome(true);
+        listPolicka.add(policko14);
+
+        Policko policko15 = new Policko();
+        policko15.setX(520);
+        policko15.setY(120);
+        policko15.setExpanses(true);
+        listPolicka.add(policko15);
+
+        Policko policko16 = new Policko();
+        policko16.setX(620);
+        policko16.setY(120);
+        policko16.setSmallDeal(true);
+        listPolicka.add(policko16);
+        //endregion
+    }
+
 
     public void launchPopUpNumberOfPlayers() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -85,6 +187,8 @@ public class GameEngine {
                 fig1.onShowFigure();
 
                 listFigures.add(fig1);
+
+                fig1.setTurn(true);
                 break;
             case 2:
                 fig1 = new Figure(player1);
@@ -94,6 +198,8 @@ public class GameEngine {
 
                 listFigures.add(fig1);
                 listFigures.add(fig2);
+
+                fig1.setTurn(true);
                 break;
             case 3:
                 fig1 = new Figure(player1);
@@ -106,6 +212,8 @@ public class GameEngine {
                 listFigures.add(fig1);
                 listFigures.add(fig2);
                 listFigures.add(fig3);
+
+                fig1.setTurn(true);
 
                 break;
             case 4:
@@ -122,6 +230,9 @@ public class GameEngine {
                 listFigures.add(fig2);
                 listFigures.add(fig3);
                 listFigures.add(fig4);
+
+                fig1.setTurn(true);
+
                 break;
 
         };
@@ -140,5 +251,21 @@ public class GameEngine {
 
         Platform.exit();
     }
-}
+    public String turnSelection(){
+        int counter=0;
+        String text= "Na tahu je hráč ";
+        for (Figure figure : listFigures) {
+            counter++;
+            if (figure.isTurn()) {
+               text+= String.valueOf(counter);
+            }
+
+        }
+        return text;
+
+        }
+
+    }
+
+
 

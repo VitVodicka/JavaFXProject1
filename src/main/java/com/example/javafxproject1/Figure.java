@@ -6,6 +6,8 @@ public class Figure implements GameObserver {
     private int totalIncome, totalExpenses,payday;
     private ImageView figure;
 
+    private boolean isTurn;
+
     Figure(ImageView figure){
         this.figure=figure;
     }
@@ -23,5 +25,14 @@ public class Figure implements GameObserver {
     @Override
     public void onMoveFigure(double x, double y) {
 
+    }
+
+
+    public boolean isTurn() {
+        return isTurn;
+    }
+
+    public void setTurn(boolean turn) {
+        isTurn = turn;
     }
 }
