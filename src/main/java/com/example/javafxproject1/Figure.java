@@ -1,10 +1,14 @@
 package com.example.javafxproject1;
 
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
 public class Figure implements GameObserver {
     private int totalIncome, totalExpenses,payday;
     private ImageView figure;
+    private int currentPolickoIndex;
+
+    private Policko currentPolicko;
 
     private boolean isTurn;
 
@@ -24,7 +28,8 @@ public class Figure implements GameObserver {
 
     @Override
     public void onMoveFigure(double x, double y) {
-
+        figure.setLayoutX(x);
+        figure.setLayoutY(y);
     }
 
 
@@ -34,5 +39,17 @@ public class Figure implements GameObserver {
 
     public void setTurn(boolean turn) {
         isTurn = turn;
+    }
+
+    public int getCurrentPolickoIndex() {
+        return currentPolickoIndex;
+    }
+
+    public void setCurrentPolickoIndex(int currentPolickoIndex) {
+        this.currentPolickoIndex = currentPolickoIndex;
+    }
+
+    public Node getImageView() {
+        return figure;
     }
 }

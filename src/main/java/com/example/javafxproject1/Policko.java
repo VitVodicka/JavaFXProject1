@@ -2,6 +2,7 @@ package com.example.javafxproject1;
 
 public class Policko {
     private int x, y;
+
     private boolean isSmallDeal, isIncome, isBigDeal, isMarket, isExpanses, isLayoff,isNothing;
 
     // Getters

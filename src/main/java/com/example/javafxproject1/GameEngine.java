@@ -16,16 +16,18 @@ public class GameEngine {
     private ImageView player3;
     private ImageView player4;
     private List<Policko> listPolicka;
-    GameEngine(ImageView player1,ImageView player2,ImageView player3,ImageView player4){
-        this.player1=player1;
-        this.player2=player2;
-        this.player3=player3;
-        this.player4=player4;
 
-        listFigures= new ArrayList<>();
-        listPolicka= new ArrayList<>();
+    GameEngine(ImageView player1, ImageView player2, ImageView player3, ImageView player4) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.player3 = player3;
+        this.player4 = player4;
+
+        listFigures = new ArrayList<>();
+        listPolicka = new ArrayList<>();
 
     }
+
     public void generatePolicka() {
         //region setting policka
         Policko policko1 = new Policko();
@@ -148,7 +150,7 @@ public class GameEngine {
         alert.getDialogPane().setContent(grid);
 
         // Array to store the result
-        boolean resaultFromLambda=false;
+        boolean resaultFromLambda = false;
         final int[] result = {0};
 
         alert.showAndWait().ifPresent(response -> {
@@ -175,13 +177,14 @@ public class GameEngine {
         });
 
         // Return the result after the lambda expression
-        numberOfPlayers=result[0];
+        numberOfPlayers = result[0];
         launchGame();
     }
-    public void launchGame(){
-        Figure fig1,fig2,fig3,fig4;
 
-        switch (numberOfPlayers){
+    public void launchGame() {
+        Figure fig1, fig2, fig3, fig4;
+
+        switch (numberOfPlayers) {
             case 1:
                 fig1 = new Figure(player1);
                 fig1.onShowFigure();
@@ -189,12 +192,16 @@ public class GameEngine {
                 listFigures.add(fig1);
 
                 fig1.setTurn(true);
+                fig1.setCurrentPolickoIndex(0);
                 break;
             case 2:
                 fig1 = new Figure(player1);
                 fig1.onShowFigure();
                 fig2 = new Figure(player2);
                 fig2.onShowFigure();
+
+                fig1.setCurrentPolickoIndex(0);
+                fig2.setCurrentPolickoIndex(0);
 
                 listFigures.add(fig1);
                 listFigures.add(fig2);
@@ -208,6 +215,10 @@ public class GameEngine {
                 fig2.onShowFigure();
                 fig3 = new Figure(player3);
                 fig3.onShowFigure();
+
+                fig1.setCurrentPolickoIndex(0);
+                fig2.setCurrentPolickoIndex(0);
+                fig3.setCurrentPolickoIndex(0);
 
                 listFigures.add(fig1);
                 listFigures.add(fig2);
@@ -226,6 +237,11 @@ public class GameEngine {
                 fig4 = new Figure(player4);
                 fig4.onShowFigure();
 
+                fig1.setCurrentPolickoIndex(0);
+                fig2.setCurrentPolickoIndex(0);
+                fig3.setCurrentPolickoIndex(0);
+                fig4.setCurrentPolickoIndex(0);
+
                 listFigures.add(fig1);
                 listFigures.add(fig2);
                 listFigures.add(fig3);
@@ -235,8 +251,11 @@ public class GameEngine {
 
                 break;
 
-        };
-    };
+        }
+        ;
+    }
+
+    ;
 
     private void showErrorAndExit() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -251,21 +270,44 @@ public class GameEngine {
 
         Platform.exit();
     }
-    public String turnSelection(){
-        int counter=0;
-        String text= "Na tahu je hráč ";
+
+    public String turnSelection() {
+        int counter = 0;
+        String text = "Na tahu je hráč ";
         for (Figure figure : listFigures) {
             counter++;
             if (figure.isTurn()) {
-               text+= String.valueOf(counter);
+                text += String.valueOf(counter);
             }
 
         }
         return text;
 
+    }
+
+    public void moveFigure(int steps) {
+        int currentPolickoIndex = listFigures.get(0).getCurrentPolickoIndex();
+        System.out.println(listPolicka.size());
+        for (int i = 0; i < steps; i++) {
+
+            //if it would go over the array
+            if(currentPolickoIndex==15){
+                currentPolickoIndex=0;
+            }
+            else {
+                currentPolickoIndex++;
+            }
+            listFigures.get(0).onMoveFigure(listPolicka.get(currentPolickoIndex).getX(), listPolicka.get(currentPolickoIndex).getY());
+            listFigures.get(0).setCurrentPolickoIndex(currentPolickoIndex);
+            try {
+                Thread.sleep(200); // Adjust the sleep duration as needed
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
     }
+}
 
 
 

@@ -60,7 +60,7 @@ public class HelloController {
         //Rectangle rectangle = new Rectangle(50, 50);
         //rectangle.setFill(Color.RED);
         //storyboard.
-
+        game.generatePolicka();
         diceImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -105,7 +105,7 @@ public class HelloController {
                 // Update UI on the JavaFX Application Thread after the animation
                 Platform.runLater(() -> {
                     titleLabel.setText(game.turnSelection());
-
+                    game.moveFigure(dice.choosingNumber());
 
                 });
 
