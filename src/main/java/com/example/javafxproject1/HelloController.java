@@ -20,6 +20,7 @@ import java.util.Random;
 
 public class HelloController {
     Random random = new Random();
+    Dice dice;
     @FXML
     private AnchorPane storyboard;
     @FXML
@@ -44,6 +45,8 @@ public class HelloController {
         GameEngine game = new GameEngine(player1,player2,player3,player4);
         game.launchPopUpNumberOfPlayers();
 
+        dice = new Dice(diceImage);
+
 
         double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
         diceImage.setLayoutX(screenWidth-250);
@@ -52,8 +55,6 @@ public class HelloController {
         //Rectangle rectangle = new Rectangle(50, 50);
         //rectangle.setFill(Color.RED);
         //storyboard.
-
-
 
         diceImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -88,7 +89,10 @@ public class HelloController {
                         File file = new File("src/main/resources/dice-" + (random.nextInt(6)+1)+".png");
                         diceImage.setImage(new Image(file.toURI().toString()));
                         Thread.sleep(50);
+
+
                     }
+                    System.out.println(dice.choosingNumber());
                     diceImage.setDisable(false);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
