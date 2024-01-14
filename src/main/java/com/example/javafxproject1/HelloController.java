@@ -25,13 +25,29 @@ public class HelloController {
     @FXML
     private ImageView diceImage;
 
+    //figure declaration
+    @FXML
+    private ImageView player1;
+    @FXML
+    private ImageView player2;
+    @FXML
+    private ImageView player3;
+    @FXML
+    private ImageView player4;
+
+
     @FXML
     private Button rollButton;
 
     @FXML
     public void initialize() {
+        GameEngine game = new GameEngine(player1,player2,player3,player4);
+        game.launchPopUpNumberOfPlayers();
+
+
         double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
         diceImage.setLayoutX(screenWidth-250);
+
 
         //Rectangle rectangle = new Rectangle(50, 50);
         //rectangle.setFill(Color.RED);
@@ -81,5 +97,11 @@ public class HelloController {
         };
 
         thread.start();
+    }
+
+    public void increment(ActionEvent actionEvent) {
+    }
+
+    public void decrement(ActionEvent actionEvent) {
     }
 }
