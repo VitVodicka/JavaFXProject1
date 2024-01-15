@@ -39,3 +39,52 @@
     -fx-font-size: 16px;
     -fx-fill: #333; /* Text color */
 }
+
+.anchor-pane .modern-component {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+}
+
+.anchor-pane .title-label {
+    -fx-text-fill: #333;
+}
+
+.anchor-pane .description-label {
+    -fx-text-fill: #555;
+}
+
+.anchor-pane .properties-box {
+    -fx-spacing: 10px;
+}
+
+.anchor-pane .property-vbox {
+    -fx-spacing: 5px;
+}
+
+.anchor-pane .quantity-field {
+    -fx-pref-width: 100px;
+}
+
+.anchor-pane .ok-button, .anchor-pane .cancel-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+#property1, #property2, #property3, #property4 {
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+#descriptionLabel {
+    -fx-margin-top: 30px; /* Add top margin */
+    -fx-margin-bottom: 30px; /* Add bottom margin */
+}
+.ok-button, .cancel-button{
+-fx-font-size:17px;
+}
+.quantity-field{
+    -fx-height:20px;
+    -fx-font-size:14px;
+
+}

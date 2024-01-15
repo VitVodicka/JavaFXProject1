@@ -4,13 +4,16 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
@@ -41,13 +44,33 @@ public class HelloController {
     @FXML
     private ImageView player4;
 
+    @FXML
+    private StackPane oppurtunitypane;
+
+    @FXML
+    private TextField quantityField;
+    @FXML
+    public Label descriptionLabel;
+
+    @FXML
+    public Label property1;
+    @FXML
+    public Label property2;
+    @FXML
+    public Label property3;
+    @FXML
+    public Label property4;
+
+
 
     @FXML
     private Button rollButton;
+    @FXML
+    public Label titleLabel2;
 
     @FXML
     public void initialize() {
-        game = new GameEngine(player1,player2,player3,player4);
+        game = new GameEngine(player1,player2,player3,player4,this);
         game.launchPopUpNumberOfPlayers();
 
         dice = new Dice(diceImage);
@@ -57,9 +80,7 @@ public class HelloController {
         diceImage.setLayoutX(screenWidth-250);
 
 
-        //Rectangle rectangle = new Rectangle(50, 50);
-        //rectangle.setFill(Color.RED);
-        //storyboard.
+        //hideOppurtunity();
         game.generatePolicka();
         diceImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -68,20 +89,10 @@ public class HelloController {
                 roll();
             }
         });
+
     }
 
-    private void addFigure() {
-        // Přidání kruhové figurky na mainPane
-        Circle figure = new Circle(30, Color.BLUE);
-        storyboard.getChildren().add(figure);
 
-        // Můžete provádět další úpravy nebo nastavení pro tuto figurku zde
-        // Například, můžete přidat obsluhu událostí pro kliknutí na figurku
-        figure.setOnMouseClicked(event -> {
-            // Zde můžete definovat akce, které se mají provést po kliknutí na figurku
-            System.out.println("Figurka byla kliknuta!");
-        });
-    }
 
     @FXML
     void roll() {
@@ -116,11 +127,38 @@ public class HelloController {
 
         thread.start();
     }
+    @FXML
+    public void hideOppurtunity(){
+        oppurtunitypane.setVisible(false);
+        diceImage.setDisable(false);
 
-
-    public void increment(ActionEvent actionEvent) {
+    }
+    public void showOppurtunity(){
+        oppurtunitypane.setVisible(true);
+        diceImage.setDisable(true);
     }
 
-    public void decrement(ActionEvent actionEvent) {
+    @FXML
+    public void OKhideOppurtunity(ActionEvent actionEvent) {
+        String quantityText = quantityField.getText();
+
+            try {
+                int quantityint=Integer.parseInt(quantityText);
+                if(quantityint>0){
+                    hideOppurtunity();
+                    diceImage.setDisable(false);
+                }
+                else {
+                    Alert al = new Alert(Alert.AlertType.INFORMATION);
+                    al.setContentText("Nejsou peníze nebo špatný formát");
+                    al.showAndWait();
+                }
+
+            } catch (NumberFormatException e) {
+                Alert al = new Alert(Alert.AlertType.INFORMATION);
+                al.setContentText("Nejsou peníze nebo špatný formát");
+                al.showAndWait();
+            }
+
     }
 }

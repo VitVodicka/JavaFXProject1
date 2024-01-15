@@ -22,12 +22,15 @@ public class GameEngine {
     private ImageView player3;
     private ImageView player4;
     private List<Policko> listPolicka;
+    private HelloController helloController;
 
-    GameEngine(ImageView player1, ImageView player2, ImageView player3, ImageView player4) {
+
+    GameEngine(ImageView player1, ImageView player2, ImageView player3, ImageView player4, HelloController helloController) {
         this.player1 = player1;
         this.player2 = player2;
         this.player3 = player3;
         this.player4 = player4;
+        this.helloController = helloController;
 
         listFigures = new ArrayList<>();
         listPolicka = new ArrayList<>();
@@ -321,86 +324,164 @@ public class GameEngine {
         Oppurtunity op = new Oppurtunity();
 
 
-        if (currentPolicko.isBigDeal()) {
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if (currentPolicko.isBigDeal()) {
+            hideProperties();
+
+
             BigDealPolicko deal=op.LoadBigDeal();
 
             String descr=deal.getDescription();
             String ticker=deal.getTicker();
             int price=deal.getPrice();
             int dividend= deal.getDividend();
-            alert.setHeaderText(ticker+String.valueOf(price)+String.valueOf(dividend));
-            alert.setContentText(descr);
 
-            alert.showAndWait();
+            double yield=0;
+            try{
+                yield = ((double) dividend / price) * 100;  // Calculate the yield as a percentage directly
+                yield = Math.round(yield);
+
+
+            }
+            catch (ArithmeticException e){
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setContentText(String.valueOf(price)+","+String.valueOf(dividend));
+                alert2.showAndWait();
+            }
+
+
+
+
+            hideProperties();
+
+            helloController.showOppurtunity();
+            helloController.titleLabel2.setText("Big deal");
+            helloController.descriptionLabel.setText(descr);
+
+            showproperties(helloController.property1,helloController.property2,helloController.property3,null);
+
+            helloController.property1.setText("Cena:"+String.valueOf(price));
+            helloController.property2.setText("Měsíční příjem:"+String.valueOf(dividend)+"Kč");
+            helloController.property3.setText("Roční výnos :"+String.valueOf(yield)+"%");
+
+
         } else if (currentPolicko.isSmallDeal()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            SmallDealPolicko deal=op.LoadSmallDeal();
+            hideProperties();
+            hideProperties();
 
+            SmallDealPolicko deal = op.LoadSmallDeal();
 
-            if(deal.getDividend()>-1){
-                String descr=deal.getDescription();
-                String ticker=deal.getTicker();
-                int price=deal.getPrice();
-                int dividend= deal.getDividend();
-                alert.setHeaderText(ticker+String.valueOf(price)+String.valueOf(dividend));
-                alert.setContentText(descr);
+            String descr = deal.getDescription();
+            String ticker = deal.getTicker();
+            int price = deal.getPrice();
+            int dividend = deal.getDividend();
+
+            double yield = 0;
+            try {
+                if (deal.getDividend() > -1) {
+
+                    yield = ((double) dividend*12 / price) * 100;  // Calculate the yield as a percentage directly
+                    yield = Math.round(yield);
+                }
+
+            } catch (ArithmeticException e) {
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setContentText(String.valueOf(price) + "," + String.valueOf(deal.getDividend()));
+                alert2.showAndWait();
             }
-            else{
-                String descr=deal.getDescription();
-                String ticker=deal.getTicker();
-                int price=deal.getPrice();
 
-                alert.setHeaderText(ticker+String.valueOf(price));
-                alert.setContentText(descr);
+            hideProperties();
+
+            helloController.showOppurtunity();
+            helloController.titleLabel2.setText("Small deal");
+            helloController.descriptionLabel.setText(descr);
+
+            helloController.property1.setText("Cena:" + String.valueOf(price)+"Kč");
+
+            if (deal.getDividend() > 0) {
+                helloController.property2.setText("Měsíční příjem:" + String.valueOf(deal.getDividend()) + "Kč");
+                helloController.property3.setText("Roční výnos :" + String.valueOf(yield) + "%");
+                showproperties(helloController.property1, helloController.property2, helloController.property3, null);
+            } else {
+                // Handle case when there is no dividend
+                showproperties(helloController.property1, null,null, null);
             }
-            alert.showAndWait();
 
         } else if (currentPolicko.isNothing()) {
         } else if (currentPolicko.isIncome()) {
             op.LoadIncome();
         } else if (currentPolicko.isMarket()) {
+            hideProperties();
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             MarketPolicko exp=op.LoadMarket();
+
+            helloController.descriptionLabel.setText(exp.getDescription());
+            showproperties(helloController.property1, null, null, null);
+
             if(exp.getAmount()!=-1&&exp.getType()!=null&& exp.isProcent()==false){
-                alert.setContentText(exp.getDescription());
-                alert.setHeaderText(String.valueOf(exp.getType())+"Kč");
-                alert.showAndWait();
+
+                helloController.property1.setText("Cena se změnila na:"+String.valueOf(exp.getAmount())+"Kč");
+                helloController.property2.setText("U aktiva:"+String.valueOf(exp.getType()));
+                showproperties(helloController.property1, helloController.property2, null, null);
+
 
 
             } else if (exp.getAmount()!=-1&&exp.getType()!=null&& exp.isProcent()==true) {
-                alert.setContentText(exp.getDescription());
-                alert.setHeaderText(String.valueOf(exp.getType())+"%");
-                alert.showAndWait();
-            } else if (exp.getEnd()=="END") {
-                alert.setContentText(exp.getDescription());
 
-                alert.showAndWait();
-                Platform.exit();
-            }
-            else{
-                alert.setContentText(exp.getDescription());
-                alert.showAndWait();
+                helloController.property1.setText("Cena se změnila o:"+String.valueOf(exp.getAmount())+"%");
+                helloController.property2.setText("U aktiva:"+String.valueOf(exp.getType()));
+                showproperties(helloController.property1, helloController.property2, null, null);
+
             }
 
+
+            helloController.showOppurtunity();
+            helloController.titleLabel2.setText("Market");
 
 
 
         } else if (currentPolicko.isExpanses()) {
+            hideProperties();
+
             ExpensesPolicko exp=op.LoadExpenses();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(exp.getDescription());
-            alert.setHeaderText(String.valueOf(exp.getAmount()));
-            alert.showAndWait();
+            helloController.descriptionLabel.setText(exp.getDescription());
+            helloController.showOppurtunity();
+            helloController.titleLabel2.setText("Náklady");
+
+            helloController.property1.setText("Cena:" + String.valueOf(exp.getAmount())+"Kč");
+            showproperties(helloController.property1, null, null, null);
+
+
         } else if (currentPolicko.isLayoff()) {
             op.LoadLayoff();
         }
 
 
 
-    }
 
+    }
+    private void hideProperties(){
+        helloController.property1.setVisible(false);
+        helloController.property2.setVisible(false);
+        helloController.property3.setVisible(false);
+        helloController.property4.setVisible(false);
+    }
+    private void showproperties(Label property1,Label property2,Label property3,Label property4){
+        //Thread.sleep(100);
+        if(property1!=null){
+            property1.setVisible(true);
+        }
+        if(property2!=null){
+            property2.setVisible(true);
+        }
+        if(property3!=null){
+            property3.setVisible(true);
+        }
+        if(property4!=null){
+            property4.setVisible(true);
+        }
+    }
 
 
 

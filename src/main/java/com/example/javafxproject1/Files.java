@@ -60,13 +60,11 @@ public class Files {
                     marketPolickoList.add(policko);
                 } else {
                     String[] subFields = fields[0].split(":");
+
                     if (subFields.length == 2) {
-                        String description = subFields[0];
-                        if (subFields[1].equals("END")) {
-                            MarketPolicko policko = new MarketPolicko(description, subFields[1]);
-                            marketPolickoList.add(policko);
-                        }
-                    } else if (subFields.length == 3) {
+
+
+                    } if (subFields.length == 3) {
                         if (subFields[0].contains("%")) {
                             Integer amount = Integer.parseInt(subFields[1]);
                             MarketPolicko policko = new MarketPolicko(subFields[0], amount, subFields[2], true);

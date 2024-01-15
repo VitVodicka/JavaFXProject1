@@ -14,10 +14,7 @@ public class MarketPolicko {
         this.Type = type;
         IsProcent = isProcent;
     }
-    public MarketPolicko(String Description,String End){
-        this.Description=Description;
-        this.End=End;
-    }
+
     public MarketPolicko(String Description){
         this.Description=Description;
     }
@@ -34,9 +31,6 @@ public class MarketPolicko {
         return Type;
     }
 
-    public String getEnd() {
-        return End;
-    }
 
     public boolean isProcent() {
         return IsProcent;
