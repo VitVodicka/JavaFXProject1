@@ -1,5 +1,7 @@
 package com.example.javafxproject1;
 
+import com.example.javafxproject1.PlayerClasses.Debts;
+import com.example.javafxproject1.PlayerClasses.MonthlyExpenses;
 import com.example.javafxproject1.PlayerClasses.Player;
 import com.example.javafxproject1.PolickaClass.BigDealPolicko;
 import com.example.javafxproject1.PolickaClass.ExpensesPolicko;
@@ -14,6 +16,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.FileReader;
 
 public class Files {
     public List<ExpensesPolicko> readExpanses() {
@@ -145,4 +154,61 @@ public class Files {
 
         return BigDealPolickoList;
     }
+    public List<Player> readUser(){
+        JSONParser parser = new JSONParser();
+        // Seznam pro ukládání objektů třídy Player
+        List<Player> players = new ArrayList<Player>();
+
+        try {
+            // Čtení JSON souboru
+            Object obj = parser.parse(new FileReader("src/main/java/com/example/javafxproject1/Data/Proffesion.json"));
+
+            // Převod na JSONObject
+            JSONObject jsonObject = (JSONObject) obj;
+
+            // Získání pole "uzivatele"
+            JSONArray uzivatele = (JSONArray) jsonObject.get("uzivatele");
+
+
+
+            // Pro každého uživatele
+            for (Object o : uzivatele) {
+                JSONObject user = (JSONObject) o;
+
+                // Získání hodnot pro vytvoření objektu Player
+                String jmeno = (String) user.get("jmeno");
+                String prijmeni = (String) user.get("prijmeni");
+                int plat = ((Long) user.get("plat")).intValue();
+                String profese = (String) user.get("profese");
+
+                // Získání objektů "mesicne" a "dluhy"
+                JSONObject mesicne = (JSONObject) user.get("mesicne");
+                JSONObject dluhy = (JSONObject) user.get("dluhy");
+
+                // Vytvoření objektů tříd MonthlyExpenses a Debts
+                MonthlyExpenses monthlyExpenses = new MonthlyExpenses(
+                        ((Long) mesicne.get("home_payment")).intValue(),
+                        ((Long) mesicne.get("car_loan")).intValue(),
+                        ((Long) mesicne.get("credit_card_payment")).intValue()
+                );
+
+                Debts debts = new Debts(
+                        ((Long) dluhy.get("home_debt")).intValue(),
+                        ((Long) dluhy.get("car_debt")).intValue(),
+                        ((Long) dluhy.get("credit_card_debt")).intValue()
+                );
+
+                // Vytvoření objektu Player
+                Player player = new Player(jmeno, prijmeni, plat, profese, monthlyExpenses, debts);
+
+                // Přidání objektu do seznamu
+                players.add(player);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return players;
+    }
+
 }

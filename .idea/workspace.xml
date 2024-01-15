@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2daa6ae9-ef9f-43d4-b4c4-55b36c91311f" name="Changes" comment="working version ?">
+      <change afterPath="$PROJECT_DIR$/javamodules/json-simple-1.1.1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Data/Market.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Data/Market.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Data/Proffesion.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Data/Proffesion.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Files.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/Files.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/GameEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/PolickaClass/MarketPolicko.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/PolickaClass/MarketPolicko.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/TypPolicka.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javafxproject1/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javafxproject1/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/PlayerClasses/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafxproject1/PlayerClasses/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +64,8 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Vít Vodička/AppData/Local/SceneBuilder/SceneBuilder.exe",
-    "project.structure.last.edited": "Project",
+    "last_opened_file_path": "C:/Users/Vít Vodička/IdeaProjects/JavaFXProject1/javamodules/json-simple-1.1.1.jar",
+    "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel"
@@ -72,11 +73,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vít Vodička\IdeaProjects\JavaFXProject1\javamodules" />
       <recent name="C:\Users\Vít Vodička\IdeaProjects\JavaFXProject1\src\main\resources" />
       <recent name="C:\Users\Vít Vodička\IdeaProjects\JavaFXProject1\src\main\resources\dice" />
       <recent name="C:\Users\Vít Vodička\IdeaProjects\JavaFXProject1\src\main\resources\css" />
       <recent name="C:\Users\Vít Vodička\IdeaProjects\JavaFXProject1\src\main\java\com\example\javafxproject1\Data" />
-      <recent name="C:\Users\Vít Vodička\IdeaProjects\JavaFXProject1\src\main\java" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.javafxproject1" />

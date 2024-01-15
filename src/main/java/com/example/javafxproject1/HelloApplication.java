@@ -19,6 +19,9 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.getIcons().add(new Image("money.png"));
         stage.show();
+
+
+
         //some
     }
 

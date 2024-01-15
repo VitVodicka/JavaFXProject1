@@ -82,6 +82,7 @@ public class HelloController {
 
         //hideOppurtunity();
         game.generatePolicka();
+
         diceImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -89,6 +90,7 @@ public class HelloController {
                 roll();
             }
         });
+
 
     }
 

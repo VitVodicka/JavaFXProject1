@@ -1,5 +1,8 @@
 package com.example.javafxproject1.PlayerClasses;
 
+import com.example.javafxproject1.Figure;
+import javafx.scene.image.ImageView;
+
 public class Player {
     private String jmeno;
     private String prijmeni;
@@ -7,8 +10,18 @@ public class Player {
     private String profese;
     private MonthlyExpenses mesicne;
     private Debts dluhy;
+    private Figure figure;
 
     // Konstruktor
+    public Player(String jmeno, String prijmeni, int plat, String profese, MonthlyExpenses mesicne, Debts dluhy, Figure figure) {
+        this.jmeno = jmeno;
+        this.prijmeni = prijmeni;
+        this.plat = plat;
+        this.profese = profese;
+        this.mesicne = mesicne;
+        this.dluhy = dluhy;
+        this.figure = figure;
+    }
     public Player(String jmeno, String prijmeni, int plat, String profese, MonthlyExpenses mesicne, Debts dluhy) {
         this.jmeno = jmeno;
         this.prijmeni = prijmeni;
@@ -66,5 +79,9 @@ public class Player {
 
     public void setDluhy(Debts dluhy) {
         this.dluhy = dluhy;
+    }
+
+    public Figure getFigure() {
+        return figure;
     }
 }

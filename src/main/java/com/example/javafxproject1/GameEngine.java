@@ -1,5 +1,6 @@
 package com.example.javafxproject1;
 
+import com.example.javafxproject1.PlayerClasses.Player;
 import com.example.javafxproject1.PolickaClass.BigDealPolicko;
 import com.example.javafxproject1.PolickaClass.ExpensesPolicko;
 import com.example.javafxproject1.PolickaClass.MarketPolicko;
@@ -16,7 +17,7 @@ import java.util.*;
 
 public class GameEngine {
     private int numberOfPlayers;
-    private List<Figure> listFigures;
+    private List<Player> listPlayer;
     private ImageView player1;
     private ImageView player2;
     private ImageView player3;
@@ -32,7 +33,7 @@ public class GameEngine {
         this.player4 = player4;
         this.helloController = helloController;
 
-        listFigures = new ArrayList<>();
+        listPlayer = new ArrayList<>();
         listPolicka = new ArrayList<>();
 
     }
@@ -191,19 +192,35 @@ public class GameEngine {
     }
 
     public void launchGame() {
+        Files f = new Files();
+        List<Player> playerListJSON= f.readUser();
         Figure fig1, fig2, fig3, fig4;
+        List<Integer> chosenNumbers= new ArrayList<>();
+        Random random = new Random();
+        int randomCislo;
+
+
 
         switch (numberOfPlayers) {
             case 1:
                 fig1 = new Figure(player1);
                 fig1.onShowFigure();
 
-                listFigures.add(fig1);
+                randomCislo=random.nextInt(playerListJSON.size());
+
+                var JSONShortcut=playerListJSON.get(randomCislo);
+
+
+                Player pl= new Player(JSONShortcut.getJmeno(),JSONShortcut.getPrijmeni(),
+                        JSONShortcut.getPlat(),JSONShortcut.getProfese(),JSONShortcut.getMesicne(),JSONShortcut.getDluhy(),fig1);
+
+                listPlayer.add(pl);
 
                 fig1.setTurn(true);
                 fig1.setCurrentPolickoIndex(0);
                 break;
             case 2:
+
                 fig1 = new Figure(player1);
                 fig1.onShowFigure();
                 fig2 = new Figure(player2);
@@ -212,12 +229,34 @@ public class GameEngine {
                 fig1.setCurrentPolickoIndex(0);
                 fig2.setCurrentPolickoIndex(0);
 
-                listFigures.add(fig1);
-                listFigures.add(fig2);
+
+                randomCislo=random.nextInt(playerListJSON.size());
+                chosenNumbers.add(randomCislo);
+
+                var JSONShortcut2=playerListJSON.get(randomCislo);
+
+                Player pl1= new Player(JSONShortcut2.getJmeno(),JSONShortcut2.getPrijmeni(),
+                        JSONShortcut2.getPlat(),JSONShortcut2.getProfese(),JSONShortcut2.getMesicne(),JSONShortcut2.getDluhy(),fig1);
+
+                listPlayer.add(pl1);
+                randomCislo=random.nextInt(playerListJSON.size());
+
+                while(chosenNumbers.contains(randomCislo)){
+                    randomCislo=random.nextInt(playerListJSON.size());
+
+
+                }
+
+                Player pl2= new Player(JSONShortcut2.getJmeno(),JSONShortcut2.getPrijmeni(),
+                        JSONShortcut2.getPlat(),JSONShortcut2.getProfese(),JSONShortcut2.getMesicne(),JSONShortcut2.getDluhy(),fig1);
+                listPlayer.add(pl2);
+
+
 
                 fig1.setTurn(true);
                 break;
             case 3:
+
                 fig1 = new Figure(player1);
                 fig1.onShowFigure();
                 fig2 = new Figure(player2);
@@ -229,9 +268,41 @@ public class GameEngine {
                 fig2.setCurrentPolickoIndex(0);
                 fig3.setCurrentPolickoIndex(0);
 
-                listFigures.add(fig1);
-                listFigures.add(fig2);
-                listFigures.add(fig3);
+
+                randomCislo=random.nextInt(playerListJSON.size());
+                chosenNumbers.add(randomCislo);
+
+                var JSONShortcut3=playerListJSON.get(randomCislo);
+
+                Player pl1_3= new Player(JSONShortcut3.getJmeno(),JSONShortcut3.getPrijmeni(),
+                        JSONShortcut3.getPlat(),JSONShortcut3.getProfese(),JSONShortcut3.getMesicne(),JSONShortcut3.getDluhy(),fig1);
+
+
+                listPlayer.add(pl1_3);
+                randomCislo=random.nextInt(playerListJSON.size());
+
+                while(chosenNumbers.contains(randomCislo)){
+                    randomCislo=random.nextInt(playerListJSON.size());
+
+
+                }
+
+                Player pl2_3= new Player(JSONShortcut3.getJmeno(),JSONShortcut3.getPrijmeni(),
+                        JSONShortcut3.getPlat(),JSONShortcut3.getProfese(),JSONShortcut3.getMesicne(),JSONShortcut3.getDluhy(),fig1);
+
+                listPlayer.add(pl2_3);
+
+                while(chosenNumbers.contains(randomCislo)){
+                    randomCislo=random.nextInt(playerListJSON.size());
+
+
+                }
+
+                Player pl3_3= new Player(JSONShortcut3.getJmeno(),JSONShortcut3.getPrijmeni(),
+                        JSONShortcut3.getPlat(),JSONShortcut3.getProfese(),JSONShortcut3.getMesicne(),JSONShortcut3.getDluhy(),fig1);
+
+                listPlayer.add(pl3_3);
+
 
                 fig1.setTurn(true);
 
@@ -251,10 +322,52 @@ public class GameEngine {
                 fig3.setCurrentPolickoIndex(0);
                 fig4.setCurrentPolickoIndex(0);
 
-                listFigures.add(fig1);
-                listFigures.add(fig2);
-                listFigures.add(fig3);
-                listFigures.add(fig4);
+
+                randomCislo=random.nextInt(playerListJSON.size());
+                chosenNumbers.add(randomCislo);
+
+                var JSONShortcut4=playerListJSON.get(randomCislo);
+
+                Player pl1_4= new Player(JSONShortcut4.getJmeno(),JSONShortcut4.getPrijmeni(),
+                        JSONShortcut4.getPlat(),JSONShortcut4.getProfese(),JSONShortcut4.getMesicne(),JSONShortcut4.getDluhy(),fig1);
+
+                randomCislo=random.nextInt(playerListJSON.size());
+                listPlayer.add(pl1_4);
+
+
+                while(chosenNumbers.contains(randomCislo)){
+                    randomCislo=random.nextInt(playerListJSON.size());
+
+
+                }
+                Player pl2_4= new Player(JSONShortcut4.getJmeno(),JSONShortcut4.getPrijmeni(),
+                        JSONShortcut4.getPlat(),JSONShortcut4.getProfese(),JSONShortcut4.getMesicne(),JSONShortcut4.getDluhy(),fig1);
+
+                listPlayer.add(pl2_4);
+
+                while(chosenNumbers.contains(randomCislo)){
+                    randomCislo=random.nextInt(playerListJSON.size());
+
+
+                }
+
+                Player pl3_4= new Player(JSONShortcut4.getJmeno(),JSONShortcut4.getPrijmeni(),
+                        JSONShortcut4.getPlat(),JSONShortcut4.getProfese(),JSONShortcut4.getMesicne(),JSONShortcut4.getDluhy(),fig1);
+
+                listPlayer.add(pl3_4);
+
+                while(chosenNumbers.contains(randomCislo)){
+                    randomCislo=random.nextInt(playerListJSON.size());
+
+
+                }
+
+                Player pl4_4= new Player(JSONShortcut4.getJmeno(),JSONShortcut4.getPrijmeni(),
+                        JSONShortcut4.getPlat(),JSONShortcut4.getProfese(),JSONShortcut4.getMesicne(),JSONShortcut4.getDluhy(),fig1);
+
+                listPlayer.add(pl4_4);
+
+
 
                 fig1.setTurn(true);
 
@@ -283,9 +396,9 @@ public class GameEngine {
     public String turnSelection() {
         int counter = 0;
         String text = "Na tahu je hráč ";
-        for (Figure figure : listFigures) {
+        for (Player pl : listPlayer) {
             counter++;
-            if (figure.isTurn()) {
+            if (pl.getFigure().isTurn()) {
                 text += String.valueOf(counter);
             }
 
@@ -295,7 +408,7 @@ public class GameEngine {
     }
 
     public void moveFigure(int steps) {
-        int currentPolickoIndex = listFigures.get(0).getCurrentPolickoIndex();
+        int currentPolickoIndex = listPlayer.get(0).getFigure().getCurrentPolickoIndex();
         System.out.println(listPolicka.size());
         for (int i = 0; i < steps; i++) {
 
@@ -306,8 +419,8 @@ public class GameEngine {
             else {
                 currentPolickoIndex++;
             }
-            listFigures.get(0).onMoveFigure(listPolicka.get(currentPolickoIndex).getX(), listPolicka.get(currentPolickoIndex).getY());
-            listFigures.get(0).setCurrentPolickoIndex(currentPolickoIndex);
+            listPlayer.get(0).getFigure().onMoveFigure(listPolicka.get(currentPolickoIndex).getX(), listPolicka.get(currentPolickoIndex).getY());
+            listPlayer.get(0).getFigure().setCurrentPolickoIndex(currentPolickoIndex);
             try {
                 Thread.sleep(200); // Adjust the sleep duration as needed
             } catch (InterruptedException e) {
