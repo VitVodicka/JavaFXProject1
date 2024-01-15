@@ -1,5 +1,10 @@
 package com.example.javafxproject1;
 
+import com.example.javafxproject1.PolickaClass.BigDealPolicko;
+import com.example.javafxproject1.PolickaClass.ExpensesPolicko;
+import com.example.javafxproject1.PolickaClass.MarketPolicko;
+import com.example.javafxproject1.PolickaClass.SmallDealPolicko;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -317,16 +322,77 @@ public class GameEngine {
 
 
         if (currentPolicko.isBigDeal()) {
-            op.LoadBigDeal();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            BigDealPolicko deal=op.LoadBigDeal();
+
+            String descr=deal.getDescription();
+            String ticker=deal.getTicker();
+            int price=deal.getPrice();
+            int dividend= deal.getDividend();
+            alert.setHeaderText(ticker+String.valueOf(price)+String.valueOf(dividend));
+            alert.setContentText(descr);
+
+            alert.showAndWait();
         } else if (currentPolicko.isSmallDeal()) {
-            op.LoadSmallDeal();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            SmallDealPolicko deal=op.LoadSmallDeal();
+
+
+            if(deal.getDividend()>-1){
+                String descr=deal.getDescription();
+                String ticker=deal.getTicker();
+                int price=deal.getPrice();
+                int dividend= deal.getDividend();
+                alert.setHeaderText(ticker+String.valueOf(price)+String.valueOf(dividend));
+                alert.setContentText(descr);
+            }
+            else{
+                String descr=deal.getDescription();
+                String ticker=deal.getTicker();
+                int price=deal.getPrice();
+
+                alert.setHeaderText(ticker+String.valueOf(price));
+                alert.setContentText(descr);
+            }
+            alert.showAndWait();
+
         } else if (currentPolicko.isNothing()) {
         } else if (currentPolicko.isIncome()) {
             op.LoadIncome();
         } else if (currentPolicko.isMarket()) {
-            op.LoadMarket();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            MarketPolicko exp=op.LoadMarket();
+            if(exp.getAmount()!=-1&&exp.getType()!=null&& exp.isProcent()==false){
+                alert.setContentText(exp.getDescription());
+                alert.setHeaderText(String.valueOf(exp.getType())+"Kč");
+                alert.showAndWait();
+
+
+            } else if (exp.getAmount()!=-1&&exp.getType()!=null&& exp.isProcent()==true) {
+                alert.setContentText(exp.getDescription());
+                alert.setHeaderText(String.valueOf(exp.getType())+"%");
+                alert.showAndWait();
+            } else if (exp.getEnd()=="END") {
+                alert.setContentText(exp.getDescription());
+
+                alert.showAndWait();
+                Platform.exit();
+            }
+            else{
+                alert.setContentText(exp.getDescription());
+                alert.showAndWait();
+            }
+
+
+
+
         } else if (currentPolicko.isExpanses()) {
-            op.LoadExpenses();
+            ExpensesPolicko exp=op.LoadExpenses();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(exp.getDescription());
+            alert.setHeaderText(String.valueOf(exp.getAmount()));
+            alert.showAndWait();
         } else if (currentPolicko.isLayoff()) {
             op.LoadLayoff();
         }

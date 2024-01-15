@@ -1,12 +1,7 @@
-Využijte šanci investovat do bytového komplexu v Karlových Varech s nízkou cenou 10 000 000 KČ. Měsíční příjem je 1 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici;
-BIGVARY:10000000:1000000;
-Využijte šanci investovat do bytového komplexu v Brně s cenou 100 000 000 KČ. Měsíční příjem je 1 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici;
-BIGVARY:100000000:1000000;
-Využijte šanci investovat do skladů ve Velké Lhotě s nízkou cenou 10 000 000 KČ. Měsíční příjem je 2 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici;
-SKLADLHOTA:10000000:2000000;
-Využijte šanci investovat do skladů ve Velké s nízkou cenou 10 000 000 KČ. Měsíční příjem je 2 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici;
-SKLADVELKA:10000000:2000000;
-Využijte šanci koupit firmu KHC s 10 000 000 KČ. Měsíční příjem je 2 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici;
-FIRMAKHC:10000000:2000000;
-Využijte šanci koupit firmu Pear s 20 000 000 KČ. Měsíční příjem je 10 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici;
-FIRMAKHC:20000000:10000000;
+Využijte šanci investovat do bytového komplexu v Karlových Varech s nízkou cenou 10 000 000 KČ. Měsíční příjem je 1 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici:10000000:BIGVARY:1000000;
+Využijte šanci investovat do bytového komplexu v Brně s cenou 100 000 000 KČ. Měsíční příjem je 1 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici:100000000:BIGBRNO:1000000;
+Využijte šanci investovat do skladů ve Velké Lhotě s nízkou cenou 10 000 000 KČ. Měsíční příjem je 2 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici:10000000:SKLADLHOTA:2000000;
+Využijte šanci investovat do skladů ve Velké s nízkou cenou 10 000 000 KČ. Měsíční příjem je 2 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici:10000000:SKLADVELKA:2000000;
+Využijte šanci koupit firmu KHC s 10 000 000 KČ. Měsíční příjem je 2 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici:10000000:FIRMAKHC:2000000;
+Využijte šanci koupit firmu Pear s 20 000 000 KČ. Měsíční příjem je 10 000 000 Kč. Je skvělou příležitostí pro ty, kteří hledají zajímavou investici:20000000:FIRMAPEAR:10000000;
+
