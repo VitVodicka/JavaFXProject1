@@ -574,6 +574,9 @@ public class GameEngine {
 
 
     }
+    private void displayUserData(Player player){
+
+    }
     private void hideProperties(){
         helloController.property1.setVisible(false);
         helloController.property2.setVisible(false);

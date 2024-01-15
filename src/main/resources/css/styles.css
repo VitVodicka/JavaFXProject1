@@ -88,3 +88,116 @@
     -fx-font-size:14px;
 
 }
+
+Rozumím, že chcete upravit vzhled vlastností hráče a jeho figurek v souladu se svým stylem. Zde je příklad, jak byste mohl upravit FXML a přidat styly pro zobrazení informací o hráči:
+
+FXML soubor (player_info.fxml):
+
+fxml
+Copy code
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="playerInfoBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxproject1.PlayerInfoController" styleClass="modern-component">
+    <Label text="Player Information" styleClass="title-label"/>
+    <Label fx:id="nameLabel" styleClass="info-label"/>
+    <Label fx:id="salaryLabel" styleClass="info-label"/>
+    <Label fx:id="professionLabel" styleClass="info-label"/>
+    <!-- Add labels for other properties as needed -->
+</VBox>
+CSS soubor (styles.css):
+
+css
+Copy code
+#playerInfoBox {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+}
+
+.title-label {
+    -fx-text-fill: #333;
+}
+
+.info-label {
+    -fx-text-fill: #555;
+    -fx-font-size: 16px;
+}
+
+#nameLabel {
+    -fx-font-weight: bold;
+}
+
+#salaryLabel {
+    -fx-font-size: 18px;
+}
+
+#professionLabel {
+    -fx-font-style: italic;
+}
+#playerInfoBox {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+}
+
+.title-label {
+    -fx-text-fill: #333;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.info-label {
+    -fx-text-fill: #555;
+    -fx-font-size: 16px;
+}
+
+#nameLabel {
+    -fx-font-weight: bold;
+}
+
+#salaryLabel {
+    -fx-font-size: 16px;
+}
+
+#professionLabel {
+    -fx-font-style: italic;
+}
+
+.modern-component {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+}
+
+/* Title label styling */
+.title-label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333;
+}
+
+/* Table view styling */
+.table-view {
+    -fx-font-size: 14px;
+}
+
+/* TableColumn header styling */
+.table-column-header {
+    -fx-font-weight: bold;
+}
+
+/* Description title styling */
+.description-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+}
+
+/* Value description styling */
+.value-description {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}

@@ -13,6 +13,10 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.GridPane?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('board.png'); -fx-background-size: cover;" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxproject1.HelloController">
   <children>
     <VBox layoutX="600" layoutY="10">
@@ -70,6 +74,7 @@
         </Label>
 
 
+
           <VBox styleClass="property-vbox">
             <Label text="Cena: 5000000" fx:id="property1" />
             <Label text=" Výnos: 10kč" fx:id="property2"/>
@@ -86,5 +91,46 @@
         </HBox>
       </VBox>
     </StackPane>
+
+
+    <GridPane fx:id="playerdetailspane" hgap="20" minWidth="400" maxWidth="400" minHeight="750" maxHeight="750" vgap="20" styleClass="modern-component">
+      <!-- První řádek -->
+      <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" >
+        <Label text="Informace o hráči" styleClass="title-label"/>
+        <TableView fx:id="infotable" >
+          <!-- ... (zbytek kódu pro tabulku) ... -->
+        </TableView>
+      </VBox>
+
+      <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" >
+        <Label text="Příjmy hráče" styleClass="title-label"/>
+        <VBox>
+          <Label text="Plat" styleClass="description-title"/>
+          <Label text="105" styleClass="value-description" fx:id="salarydescription"/>
+        </VBox>
+        <TableView fx:id="playerTableInvestment" >
+          <!-- ... (zbytek kódu pro tabulku) ... -->
+        </TableView>
+      </VBox>
+
+      <!-- Druhý řádek -->
+      <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" >
+        <Label text="Měsíční výdaje" styleClass="title-label"/>
+        <TableView fx:id="monthlyTable" >
+          <!-- ... (zbytek kódu pro tabulku) ... -->
+        </TableView>
+      </VBox>
+
+      <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" >
+        <Label text="Celkové půjčky" styleClass="title-label"/>
+        <TableView fx:id="debtTable" >
+          <!-- ... (zbytek kódu pro tabulku) ... -->
+        </TableView>
+      </VBox>
+    </GridPane>
+
+
+
+
   </children>
 </AnchorPane>
