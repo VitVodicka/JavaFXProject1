@@ -98,7 +98,9 @@
       <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" >
         <Label text="Informace o hráči" styleClass="title-label"/>
         <TableView fx:id="infotable" >
-          <!-- ... (zbytek kódu pro tabulku) ... -->
+          <TableColumn text="Jméno" fx:id="nameColumn" />
+          <TableColumn text="Příjmení" fx:id="surnameColumn" />
+          <TableColumn text="Profese" fx:id="proffesionColumn" />
         </TableView>
       </VBox>
 
@@ -109,7 +111,7 @@
           <Label text="105" styleClass="value-description" fx:id="salarydescription"/>
         </VBox>
         <TableView fx:id="playerTableInvestment" >
-          <!-- ... (zbytek kódu pro tabulku) ... -->
+          <TableColumn text="Investice" fx:id="investColumn" />
         </TableView>
       </VBox>
 
@@ -117,14 +119,21 @@
       <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" >
         <Label text="Měsíční výdaje" styleClass="title-label"/>
         <TableView fx:id="monthlyTable" >
-          <!-- ... (zbytek kódu pro tabulku) ... -->
+          <columns>
+            <TableColumn text="Hypotéka na dům" fx:id="mortgageHouseColumn" />
+            <TableColumn text="Hypotéka na auto" fx:id="mortgageCarColumn" />
+            <TableColumn text="Kreditní dluh" fx:id="creditCardDebtColumn" />
+          </columns>
         </TableView>
+
       </VBox>
 
       <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" >
         <Label text="Celkové půjčky" styleClass="title-label"/>
         <TableView fx:id="debtTable" >
-          <!-- ... (zbytek kódu pro tabulku) ... -->
+          <TableColumn text="Hypotéka na dům" fx:id="mortgagehouse" />
+          <TableColumn text="Hypotéka na auto" fx:id="mortgagecar" />
+          <TableColumn text="Kreditní dluh" fx:id="creditcarddebt" />
         </TableView>
       </VBox>
     </GridPane>

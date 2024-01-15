@@ -406,6 +406,10 @@ public class GameEngine {
         return text;
 
     }
+    public List<Player> getListPlayer(){
+        return listPlayer;
+    }
+
 
     public void moveFigure(int steps) {
         int currentPolickoIndex = listPlayer.get(0).getFigure().getCurrentPolickoIndex();
@@ -575,6 +579,9 @@ public class GameEngine {
 
     }
     private void displayUserData(Player player){
+
+    }
+    private void initializePlayerTables(){
 
     }
     private void hideProperties(){

@@ -1,13 +1,16 @@
 package com.example.javafxproject1;
 
+import com.example.javafxproject1.PlayerClasses.MonthlyExpenses;
+import com.example.javafxproject1.PlayerClasses.Player;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -61,6 +64,20 @@ public class HelloController {
     @FXML
     public Label property4;
 
+    @FXML
+    private TableView<MonthlyExpenses> monthlyTable;
+
+
+    @FXML
+    private TableColumn<MonthlyExpenses, Integer> mortgageHouseColumn;
+
+    @FXML
+    private TableColumn<MonthlyExpenses, Integer> mortgageCarColumn;
+
+    @FXML
+    private TableColumn<MonthlyExpenses, Integer> creditCardDebtColumn;
+
+
 
 
     @FXML
@@ -82,8 +99,47 @@ public class HelloController {
 
         //hideOppurtunity();
         game.generatePolicka();
+        try {
+            mortgageHouseColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getHome_payment()).asObject());
+            mortgageCarColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCar_loan()).asObject());
+            creditCardDebtColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCredit_card_payment()).asObject());
 
-        diceImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            ObservableList<MonthlyExpenses> observableData = FXCollections.observableArrayList();
+            for (Player player : game.getListPlayer()) {
+                MonthlyExpenses monthlyExpenses = player.getMesicne();
+                observableData.add(monthlyExpenses);
+            }
+
+            // Debug print to check the content of observableData
+            System.out.println("Observable Data: " + observableData);
+
+            monthlyTable.setItems(observableData);
+
+            if (observableData.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText(null);
+                alert.setContentText("No data available.");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("An error occurred: " + e.getMessage());
+            alert.showAndWait();
+        }
+        mortgageHouseColumn.setVisible(true);
+        mortgageCarColumn.setVisible(true);
+        creditCardDebtColumn.setVisible(true);
+
+
+
+
+
+            diceImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 // Call the method you want to execute on ImageView click

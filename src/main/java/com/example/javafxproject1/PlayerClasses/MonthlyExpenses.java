@@ -1,15 +1,18 @@
 package com.example.javafxproject1.PlayerClasses;
 
 public class MonthlyExpenses {
-    private int home_payment;
-    private int car_loan;
-    private int credit_card_payment;
+    public int home_payment;
+    public int car_loan;
+    public int credit_card_payment;
 
     // Konstruktor
     public MonthlyExpenses(int home_payment, int car_loan, int credit_card_payment) {
         this.home_payment = home_payment;
         this.car_loan = car_loan;
         this.credit_card_payment = credit_card_payment;
+    }
+    public MonthlyExpenses() {
+        // prázdný konstruktor
     }
 
     // Gettery a Settery
