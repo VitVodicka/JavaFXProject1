@@ -135,9 +135,6 @@ public class HelloController {
     @FXML
     public Label titleLabel2;
 
-
-
-
     @FXML
     public void initialize() {
         game = new GameEngine(player1,player2,player3,player4,this);
@@ -166,6 +163,15 @@ public class HelloController {
         TableHandler.setCurrentExpenses(currentExpenses, observablePlayerList);
         TableHandler.setCurrentMoney(currentMoney, observablePlayerList);
 
+
+        playerTableInvestment.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                Investments selectedItem = playerTableInvestment.getSelectionModel().getSelectedItem();
+                int rowIndex = playerTableInvestment.getItems().indexOf(selectedItem);
+
+                handleDoubleClick(selectedItem, rowIndex);
+            }
+        });
 
 
 
@@ -222,6 +228,8 @@ public class HelloController {
 
                 });
 
+
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -229,6 +237,19 @@ public class HelloController {
 
         thread.start();
     }
+    private void handleDoubleClick(Investments selectedItem,int rowIndex) {
+         if(selectedItem != null) {
+            // Implement your logic for double-click action
+             game.getListPlayer().get(GameEngine.PlayerTurn).deleteAt(rowIndex);
+             List<Player> playerList = game.getListPlayer();
+             ObservableList<Player> observablePlayerList = FXCollections.observableArrayList(playerList);
+             TableHandler.setCurrentMoney(currentMoney, observablePlayerList);
+
+
+        }
+    }
+
+
     @FXML
     public void hideOppurtunity(){
         oppurtunitypane.setVisible(false);

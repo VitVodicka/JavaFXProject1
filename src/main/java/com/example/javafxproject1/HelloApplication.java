@@ -20,8 +20,6 @@ public class HelloApplication extends Application {
         stage.getIcons().add(new Image("money.png"));
         stage.show();
 
-
-
         //some
     }
 

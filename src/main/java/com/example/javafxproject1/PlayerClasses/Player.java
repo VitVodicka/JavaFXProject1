@@ -1,6 +1,7 @@
 package com.example.javafxproject1.PlayerClasses;
 
 import com.example.javafxproject1.Figure;
+import javafx.scene.control.Alert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,10 +131,35 @@ public class Player {
     public List<Investments> getInvestmentsList(){
         return investmentsList;
     }
+    public void deleteAt(int rowindex) {
+        if (rowindex >= 0 && rowindex < investmentsList.size()) {
+            CurrentMoney += investmentsList.get(rowindex).getPrice();
+            investmentsList.remove(rowindex);
+        } else {
+            // Handle the case where rowindex is out of bounds
+            System.err.println("Invalid row index: " + investmentsList.size());
+        }
+    }
     public void MoneyLayoff(){
         CurrentMoney-=(2*currentExpenses);
     }
     public void addInvestment(Investments investment) {
+        try{
+
+        CurrentMoney-=investment.getPrice()*investment.getAmount();
+        if(CurrentMoney>-1){
         investmentsList.add(investment);
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setContentText("nepřidáno, nedostatek peněz");
+            alert.showAndWait();
+        }
+        }
+        catch(Exception ex){
+                ex.printStackTrace();
+            }
+
     }
 }
