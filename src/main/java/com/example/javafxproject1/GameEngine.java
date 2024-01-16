@@ -530,7 +530,13 @@ public class GameEngine {
 
             helloController.property1.setText("Cena:" + String.valueOf(price) + "Kč");
 
+            Oppurtunity.price=price;
+            Oppurtunity.ticker=ticker;
+
+
             if (deal.getDividend() > 0) {
+                Oppurtunity.dividend=dividend;
+
                 helloController.property2.setText("Měsíční příjem:" + String.valueOf(deal.getDividend()) + "Kč");
                 helloController.property3.setText("Roční výnos :" + String.valueOf(yield) + "%");
                 showproperties(helloController.property1, helloController.property2, helloController.property3, null);

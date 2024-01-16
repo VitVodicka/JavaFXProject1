@@ -1,6 +1,7 @@
 package com.example.javafxproject1;
 
 import com.example.javafxproject1.PlayerClasses.Debts;
+import com.example.javafxproject1.PlayerClasses.Investments;
 import com.example.javafxproject1.PlayerClasses.MonthlyExpenses;
 import com.example.javafxproject1.PlayerClasses.Player;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -67,5 +68,15 @@ public class TableHandler {
     public static void setCurrentExpenses(Label currentExpenses, ObservableList<Player> players){
 
         currentExpenses.setText(String.valueOf(players.get(GameEngine.PlayerTurn).getCurrentExpenses()));
+    }
+    public static void setInvestmentsTable(TableView<Investments> table, TableColumn<Investments, Integer> investAmount,
+                                           TableColumn<Investments, String> investTicker, TableColumn<Investments, Integer> investPrice,
+                                           TableColumn<Investments, Integer> investDividend, ObservableList<Investments> investmentsList) {
+        investAmount.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAmount()).asObject());
+        investTicker.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTicker()));
+        investPrice.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPrice()).asObject());
+        investDividend.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDividend()).asObject());
+
+        table.setItems(investmentsList);
     }
 }

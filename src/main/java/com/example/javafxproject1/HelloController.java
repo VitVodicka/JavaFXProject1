@@ -1,6 +1,7 @@
 package com.example.javafxproject1;
 
 import com.example.javafxproject1.PlayerClasses.Debts;
+import com.example.javafxproject1.PlayerClasses.Investments;
 import com.example.javafxproject1.PlayerClasses.MonthlyExpenses;
 import com.example.javafxproject1.PlayerClasses.Player;
 import javafx.application.Platform;
@@ -100,6 +101,19 @@ public class HelloController {
 
     @FXML
     private TableColumn<Player, String> proffesionColumn;
+
+    @FXML
+    TableView<Investments> playerTableInvestment;
+    @FXML
+    TableColumn<Investments, Integer> investAmount;
+    @FXML
+    TableColumn<Investments, String> investTicker;
+    @FXML
+    TableColumn<Investments, Integer> investPrice;
+    @FXML
+    TableColumn<Investments, Integer> investDividend;
+
+
 
     @FXML
     private Label salarydescription;
@@ -229,14 +243,11 @@ public class HelloController {
     @FXML
     public void OKhideOppurtunity(ActionEvent actionEvent) {
         String quantityText = quantityField.getText();
+        int quantityint=Integer.parseInt(quantityText);
 
-        try {
-            if(quantityText==""){
-                int quantityint=Integer.parseInt(quantityText);
-                if(quantityint>0){
-                    hideOppurtunity();
-                    diceImage.setDisable(false);
-                }
+
+            if(quantityText=="") {
+
             }
             else if(isLayoff||isExpense){
                 if(isExpense){
@@ -249,19 +260,23 @@ public class HelloController {
                 hideOppurtunity();
                 diceImage.setDisable(false);
             }
-            else {
-                Alert al = new Alert(Alert.AlertType.INFORMATION);
-                al.setContentText("Nejsou peníze nebo špatný formát");
-                al.showAndWait();
+            if(quantityint>0) {
+                Policko currentPolicko = game.getListPolicek().get(game.getListPlayer().get(GameEngine.PlayerTurn).getFigure().getCurrentPolickoIndex());
+
+                if (currentPolicko.isSmallDeal()) {
+                    Oppurtunity.createSmallDeal(quantityint, game.getListPlayer(), playerTableInvestment, investAmount, investTicker, investPrice, investDividend);
+
+
+                }
             }
 
-        } catch (NumberFormatException e) {
-            Alert al = new Alert(Alert.AlertType.INFORMATION);
-            al.setContentText("Nejsou peníze nebo špatný formát");
-            al.showAndWait();
-        }
+
+
         HelloController.isLayoff =false;
         HelloController.isExpense =false;
+        hideOppurtunity();
+
+        diceImage.setDisable(false);
 
 
     }

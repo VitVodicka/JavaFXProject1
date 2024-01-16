@@ -2,6 +2,9 @@ package com.example.javafxproject1.PlayerClasses;
 
 import com.example.javafxproject1.Figure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private String jmeno;
     private String prijmeni;
@@ -13,6 +16,8 @@ public class Player {
     private int currentExpenses;
     private int surplus;
     private int CurrentMoney;
+    private List<Investments> investmentsList;
+
 
     // Konstruktor
     public Player(String jmeno, String prijmeni, int plat, String profese, MonthlyExpenses mesicne, Debts dluhy, Figure figure,int currentMoney) {
@@ -27,6 +32,9 @@ public class Player {
 
         currentExpenses=this.mesicne.getCar_loan()+this.mesicne.getCredit_card_payment()+this.mesicne.getHome_payment();
         surplus=this.plat-currentExpenses;
+
+        this.investmentsList = new ArrayList<>();
+
     }
     public Player(String jmeno, String prijmeni, int plat, String profese, MonthlyExpenses mesicne, Debts dluhy,int currentMoney) {
         this.jmeno = jmeno;
@@ -119,7 +127,13 @@ public class Player {
     public void subtractMoney(int amount){
         CurrentMoney-=amount;
     }
+    public List<Investments> getInvestmentsList(){
+        return investmentsList;
+    }
     public void MoneyLayoff(){
-        CurrentMoney-=2*currentExpenses;
+        CurrentMoney-=(2*currentExpenses);
+    }
+    public void addInvestment(Investments investment) {
+        investmentsList.add(investment);
     }
 }

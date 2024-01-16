@@ -1,10 +1,15 @@
 package com.example.javafxproject1;
 
+import com.example.javafxproject1.PlayerClasses.Investments;
 import com.example.javafxproject1.PlayerClasses.Player;
 import com.example.javafxproject1.PolickaClass.BigDealPolicko;
 import com.example.javafxproject1.PolickaClass.ExpensesPolicko;
 import com.example.javafxproject1.PolickaClass.MarketPolicko;
 import com.example.javafxproject1.PolickaClass.SmallDealPolicko;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 import java.util.*;
 
@@ -14,6 +19,9 @@ public class Oppurtunity {
     static List<SmallDealPolicko> SmallDealList= new ArrayList<SmallDealPolicko>();
     static List<BigDealPolicko> BigDealList= new ArrayList<BigDealPolicko>();
     static int expenseAmount;
+
+    static String ticker;
+    static  int price,dividend,amount;
     public void LoadIncome(Player pl){
         pl.addIncomeMoney();
 
@@ -67,6 +75,35 @@ public class Oppurtunity {
                 break;
             }
             turnCounter++;
+        }
+    }
+    public static void createSmallDeal(int quantity, List<Player> listPlayer, TableView<Investments> tableView,
+                                       TableColumn<Investments, Integer> investAmount,
+                                       TableColumn<Investments, String> investTicker,
+                                       TableColumn<Investments, Integer> investPrice,
+                                       TableColumn<Investments, Integer> investDividend) {
+
+        Investments invest;
+        for (Player pl : listPlayer) {
+            if (pl.getFigure().isTurn()) {
+                if(dividend>-1){
+                    invest = new Investments(quantity,ticker,price,dividend);
+                }
+                else {
+                    invest = new Investments(quantity,ticker,price);
+                }
+
+                // Voláme metodu MoneyLayoff na aktuálním hráči
+                pl.addInvestment(invest);
+                ObservableList<Investments> observableInvestmentList = FXCollections.observableArrayList(pl.getInvestmentsList());
+
+
+                tableView.getItems().add(invest);
+                TableHandler.setInvestmentsTable(tableView, investAmount, investTicker, investPrice, investDividend,observableInvestmentList);
+
+                break;
+            }
+
         }
     }
 

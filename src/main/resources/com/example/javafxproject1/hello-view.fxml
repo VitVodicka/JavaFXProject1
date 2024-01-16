@@ -120,7 +120,10 @@
         </VBox>
         <TableView fx:id="playerTableInvestment" >
           <columns>
-          <TableColumn text="Investice" fx:id="investColumn" />
+          <TableColumn text="Množství" fx:id="investAmount" />
+            <TableColumn text="Ticker" fx:id="investTicker" />
+            <TableColumn text="Cena" fx:id="investPrice" />
+            <TableColumn text="Dividenda" fx:id="investDividend" />
           </columns>
         </TableView>
       </VBox>
