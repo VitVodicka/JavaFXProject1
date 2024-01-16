@@ -4,25 +4,18 @@ import com.example.javafxproject1.PlayerClasses.Debts;
 import com.example.javafxproject1.PlayerClasses.MonthlyExpenses;
 import com.example.javafxproject1.PlayerClasses.Player;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
-import javafx.scene.shape.Circle;
 
 import java.io.File;
 import java.util.List;
@@ -109,6 +102,15 @@ public class HelloController {
     @FXML
     private Label salarydescription;
 
+    @FXML
+    private Button okbutton;
+    @FXML
+    private Button cancelbutton;
+
+    @FXML
+    public Label currentMoney;
+    @FXML
+    private Label currentExpenses;
 
 
 
@@ -116,6 +118,9 @@ public class HelloController {
     private Button rollButton;
     @FXML
     public Label titleLabel2;
+
+
+
 
     @FXML
     public void initialize() {
@@ -138,11 +143,12 @@ public class HelloController {
         List<Player> playerList = game.getListPlayer();
         ObservableList<Player> observablePlayerList = FXCollections.observableArrayList(playerList);
 
-        TableHandler.initializeMonthlyTable(monthlyTable, mortgageHouseColumn, mortgageCarColumn, creditCardDebtColumn, observablePlayerList);
-        TableHandler.initializeDebtTable(debtTable, mortgagehouse, mortgagecar, creditcarddebt, observablePlayerList);
-        TableHandler.initializeInfoTable(infotable, nameColumn, surnameColumn, proffesionColumn, observablePlayerList);
-        TableHandler.initializeSalary(salarydescription, observablePlayerList);
-
+        TableHandler.setMonthlyTable(monthlyTable, mortgageHouseColumn, mortgageCarColumn, creditCardDebtColumn, observablePlayerList);
+        TableHandler.setDebtTable(debtTable, mortgagehouse, mortgagecar, creditcarddebt, observablePlayerList);
+        TableHandler.setInfoTable(infotable, nameColumn, surnameColumn, proffesionColumn, observablePlayerList);
+        TableHandler.setSalary(salarydescription, observablePlayerList);
+        TableHandler.setCurrentExpenses(currentExpenses, observablePlayerList);
+        TableHandler.setCurrentMoney(currentMoney, observablePlayerList);
 
 
 
@@ -190,10 +196,11 @@ public class HelloController {
                     List<Player> playerList = game.getListPlayer();
                     ObservableList<Player> observablePlayerList = FXCollections.observableArrayList(playerList);
 
-                    TableHandler.initializeMonthlyTable(monthlyTable, mortgageHouseColumn, mortgageCarColumn, creditCardDebtColumn, observablePlayerList);
-                    TableHandler.initializeDebtTable(debtTable, mortgagehouse, mortgagecar, creditcarddebt, observablePlayerList);
-                    TableHandler.initializeInfoTable(infotable, nameColumn, surnameColumn, proffesionColumn, observablePlayerList);
-                    TableHandler.initializeSalary(salarydescription, observablePlayerList);
+                    TableHandler.setMonthlyTable(monthlyTable, mortgageHouseColumn, mortgageCarColumn, creditCardDebtColumn, observablePlayerList);
+                    TableHandler.setDebtTable(debtTable, mortgagehouse, mortgagecar, creditcarddebt, observablePlayerList);
+                    TableHandler.setInfoTable(infotable, nameColumn, surnameColumn, proffesionColumn, observablePlayerList);
+                    TableHandler.setSalary(salarydescription, observablePlayerList);
+                    TableHandler.setCurrentExpenses(currentExpenses, observablePlayerList);
 
 
                 });
@@ -237,6 +244,14 @@ public class HelloController {
                 al.setContentText("Nejsou peníze nebo špatný formát");
                 al.showAndWait();
             }
+
+    }
+    public void hideCancelButton(){
+        cancelbutton.setVisible(false);
+
+    }
+    public void showCancelButton(){
+        cancelbutton.setVisible(true);
 
     }
 }

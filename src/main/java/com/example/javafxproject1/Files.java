@@ -199,7 +199,7 @@ public class Files {
                 );
 
                 // Vytvoření objektu Player
-                Player player = new Player(jmeno, prijmeni, plat, profese, monthlyExpenses, debts);
+                Player player = new Player(jmeno, prijmeni, plat, profese, monthlyExpenses, debts,0);
 
                 // Přidání objektu do seznamu
                 players.add(player);

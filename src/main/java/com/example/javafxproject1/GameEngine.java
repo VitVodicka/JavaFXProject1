@@ -6,6 +6,8 @@ import com.example.javafxproject1.PolickaClass.ExpensesPolicko;
 import com.example.javafxproject1.PolickaClass.MarketPolicko;
 import com.example.javafxproject1.PolickaClass.SmallDealPolicko;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -306,7 +308,7 @@ public class GameEngine {
             var JSONShortcut = playerListJSON.get(randomCislo);
 
             Player pl = new Player(JSONShortcut.getJmeno(), JSONShortcut.getPrijmeni(),
-                    JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(0));
+                    JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(0),0);
 
             listPlayer.add(pl);
         } else {
@@ -317,7 +319,7 @@ public class GameEngine {
                         var JSONShortcut = playerListJSON.get(randomCislo2);
 
                         Player pl = new Player(JSONShortcut.getJmeno(), JSONShortcut.getPrijmeni(),
-                                JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(i));
+                                JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(i),0);
 
                         listPlayer.add(pl);
                         chosenNumbers.add(randomCislo2);
@@ -328,7 +330,7 @@ public class GameEngine {
                             var JSONShortcut = playerListJSON.get(randomCislo3);
 
                             Player pl = new Player(JSONShortcut.getJmeno(), JSONShortcut.getPrijmeni(),
-                                    JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(i));
+                                    JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(i),0);
 
                             listPlayer.add(pl);
                             chosenNumbers.add(randomCislo3);
@@ -349,8 +351,6 @@ public class GameEngine {
 
 
     }
-
-    ;
 
     private void showErrorAndExit() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -428,7 +428,12 @@ public class GameEngine {
             if (currentPolickoIndex == 15) {
                 currentPolickoIndex = 0;
             } else {
+                Policko currentPolicko = listPolicka.get(currentPolickoIndex);
+                if(currentPolicko.isIncome()){
+                    typeOfPolicko(currentPolickoIndex);
+                }
                 currentPolickoIndex++;
+
             }
 
             listPlayer.get(turnCounter).getFigure().onMoveFigure(listPolicka.get(currentPolickoIndex).getX(), listPolicka.get(currentPolickoIndex).getY());
@@ -535,7 +540,10 @@ public class GameEngine {
 
         } else if (currentPolicko.isNothing()) {
         } else if (currentPolicko.isIncome()) {
-            op.LoadIncome();
+            op.LoadIncome(listPlayer.get(GameEngine.PlayerTurn));
+
+            ObservableList<Player> observableList = FXCollections.observableArrayList(listPlayer);
+            TableHandler.setCurrentMoney(helloController.currentMoney,observableList);
         } else if (currentPolicko.isMarket()) {
             hideProperties();
 
@@ -575,9 +583,11 @@ public class GameEngine {
 
             helloController.property1.setText("Cena:" + String.valueOf(exp.getAmount()) + "Kč");
             showproperties(helloController.property1, null, null, null);
+            helloController.hideCancelButton();
 
 
         } else if (currentPolicko.isLayoff()) {
+            helloController.hideCancelButton();
             op.LoadLayoff();
         }
 
@@ -591,6 +601,8 @@ public class GameEngine {
         helloController.property2.setVisible(false);
         helloController.property3.setVisible(false);
         helloController.property4.setVisible(false);
+
+
     }
 
     private void showproperties(Label property1, Label property2, Label property3, Label property4) {
@@ -607,6 +619,7 @@ public class GameEngine {
         if (property4 != null) {
             property4.setVisible(true);
         }
+        helloController.showCancelButton();
     }
 
 

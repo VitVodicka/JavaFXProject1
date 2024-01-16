@@ -86,8 +86,8 @@
         <TextField fx:id="quantityField" promptText="Množství" styleClass="quantity-field" />
 
         <HBox spacing="10">
-          <Button text="OK" minWidth="50" minHeight="20"  styleClass="ok-button" onAction="#OKhideOppurtunity"/>
-          <Button text="Cancel" styleClass="cancel-button" onAction="#hideOppurtunity"/>
+          <Button text="OK" minWidth="50" minHeight="20"  styleClass="ok-button" fx:id="okbutton" onAction="#OKhideOppurtunity"/>
+          <Button text="Cancel" styleClass="cancel-button" fx:id="cancelbutton" onAction="#hideOppurtunity"/>
         </HBox>
       </VBox>
     </StackPane>
@@ -97,7 +97,13 @@
       <!-- První řádek -->
       <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" >
         <Label text="Informace o hráči" styleClass="title-label"/>
-        <TableView fx:id="infotable" >
+
+        <Label text="Aktuální peníze" styleClass="description-title"/>
+        <Label text="105" styleClass="value-description" fx:id="currentMoney" />
+        <Label text="Aktuální výdaje" styleClass="description-title"/>
+        <Label text="105" styleClass="value-description"  fx:id="currentExpenses"/>
+
+        <TableView fx:id="infotable" maxHeight="250" >
           <columns>
           <TableColumn text="Jméno" fx:id="nameColumn" />
           <TableColumn text="Příjmení" fx:id="surnameColumn" />

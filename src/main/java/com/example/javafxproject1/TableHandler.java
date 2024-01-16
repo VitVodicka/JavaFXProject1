@@ -13,9 +13,9 @@ import javafx.scene.control.TableView;
 
 public class TableHandler {
 
-    public static void initializeMonthlyTable(TableView<MonthlyExpenses> table, TableColumn<MonthlyExpenses, Integer> mortgageHouseColumn,
-                                              TableColumn<MonthlyExpenses, Integer> mortgageCarColumn, TableColumn<MonthlyExpenses, Integer> creditCardDebtColumn,
-                                              ObservableList<Player> players) {
+    public static void setMonthlyTable(TableView<MonthlyExpenses> table, TableColumn<MonthlyExpenses, Integer> mortgageHouseColumn,
+                                       TableColumn<MonthlyExpenses, Integer> mortgageCarColumn, TableColumn<MonthlyExpenses, Integer> creditCardDebtColumn,
+                                       ObservableList<Player> players) {
         mortgageHouseColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getHome_payment()).asObject());
         mortgageCarColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCar_loan()).asObject());
         creditCardDebtColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCredit_card_payment()).asObject());
@@ -27,9 +27,9 @@ public class TableHandler {
             table.setItems(observableData);
     }
 
-    public static void initializeDebtTable(TableView<Debts> table, TableColumn<Debts, Integer> mortgageHouseColumn,
-                                           TableColumn<Debts, Integer> mortgageCarColumn, TableColumn<Debts, Integer> creditCardDebtColumn,
-                                           ObservableList<Player> players) {
+    public static void setDebtTable(TableView<Debts> table, TableColumn<Debts, Integer> mortgageHouseColumn,
+                                    TableColumn<Debts, Integer> mortgageCarColumn, TableColumn<Debts, Integer> creditCardDebtColumn,
+                                    ObservableList<Player> players) {
         mortgageHouseColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getHome_debt()).asObject());
         mortgageCarColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCar_debt()).asObject());
         creditCardDebtColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCredit_card_debt()).asObject());
@@ -41,9 +41,9 @@ public class TableHandler {
         table.setItems(observableDataDebt);
     }
 
-    public static void initializeInfoTable(TableView<Player> table, TableColumn<Player, String> nameColumn,
-                                           TableColumn<Player, String> surnameColumn, TableColumn<Player, String> professionColumn,
-                                           ObservableList<Player> players) {
+    public static void setInfoTable(TableView<Player> table, TableColumn<Player, String> nameColumn,
+                                    TableColumn<Player, String> surnameColumn, TableColumn<Player, String> professionColumn,
+                                    ObservableList<Player> players) {
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getJmeno()));
         surnameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrijmeni()));
         professionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfese()));
@@ -56,8 +56,16 @@ public class TableHandler {
 
 
     }
-    public static void initializeSalary(Label salarydescription, ObservableList<Player> players){
+    public static void setSalary(Label salarydescription, ObservableList<Player> players){
 
         salarydescription.setText(String.valueOf(players.get(GameEngine.PlayerTurn).getPlat()));
+    }
+    public static void setCurrentMoney(Label currentMoney, ObservableList<Player> players){
+
+        currentMoney.setText(String.valueOf(players.get(GameEngine.PlayerTurn).getCurrentMoney()));
+    }
+    public static void setCurrentExpenses(Label currentExpenses, ObservableList<Player> players){
+
+        currentExpenses.setText(String.valueOf(players.get(GameEngine.PlayerTurn).getCurrentExpenses()));
     }
 }

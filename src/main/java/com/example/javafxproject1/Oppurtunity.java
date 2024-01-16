@@ -1,5 +1,6 @@
 package com.example.javafxproject1;
 
+import com.example.javafxproject1.PlayerClasses.Player;
 import com.example.javafxproject1.PolickaClass.BigDealPolicko;
 import com.example.javafxproject1.PolickaClass.ExpensesPolicko;
 import com.example.javafxproject1.PolickaClass.MarketPolicko;
@@ -12,7 +13,8 @@ public class Oppurtunity {
     static List<MarketPolicko> MarketList= new ArrayList<MarketPolicko>();
     static List<SmallDealPolicko> SmallDealList= new ArrayList<SmallDealPolicko>();
     static List<BigDealPolicko> BigDealList= new ArrayList<BigDealPolicko>();
-    public void LoadIncome(){
+    public void LoadIncome(Player pl){
+        pl.addCurrentMoney();
 
     }
     public BigDealPolicko LoadBigDeal(){

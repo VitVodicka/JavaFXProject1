@@ -1,7 +1,6 @@
 package com.example.javafxproject1.PlayerClasses;
 
 import com.example.javafxproject1.Figure;
-import javafx.scene.image.ImageView;
 
 public class Player {
     private String jmeno;
@@ -11,9 +10,12 @@ public class Player {
     private MonthlyExpenses mesicne;
     private Debts dluhy;
     private Figure figure;
+    private int currentExpenses;
+    private int surplus;
+    private int CurrentMoney;
 
     // Konstruktor
-    public Player(String jmeno, String prijmeni, int plat, String profese, MonthlyExpenses mesicne, Debts dluhy, Figure figure) {
+    public Player(String jmeno, String prijmeni, int plat, String profese, MonthlyExpenses mesicne, Debts dluhy, Figure figure,int currentMoney) {
         this.jmeno = jmeno;
         this.prijmeni = prijmeni;
         this.plat = plat;
@@ -21,14 +23,22 @@ public class Player {
         this.mesicne = mesicne;
         this.dluhy = dluhy;
         this.figure = figure;
+        CurrentMoney=currentMoney;
+
+        currentExpenses=this.mesicne.getCar_loan()+this.mesicne.getCredit_card_payment()+this.mesicne.getHome_payment();
+        surplus=this.plat-currentExpenses;
     }
-    public Player(String jmeno, String prijmeni, int plat, String profese, MonthlyExpenses mesicne, Debts dluhy) {
+    public Player(String jmeno, String prijmeni, int plat, String profese, MonthlyExpenses mesicne, Debts dluhy,int currentMoney) {
         this.jmeno = jmeno;
         this.prijmeni = prijmeni;
         this.plat = plat;
         this.profese = profese;
         this.mesicne = mesicne;
         this.dluhy = dluhy;
+        currentExpenses=this.mesicne.getCar_loan()+this.mesicne.getCredit_card_payment()+this.mesicne.getHome_payment();
+        surplus=this.plat-currentExpenses;
+        CurrentMoney=currentMoney;
+
     }
     public Player(String jmeno, String prijmeni, String profese) {
         this.jmeno = jmeno;
@@ -88,5 +98,22 @@ public class Player {
 
     public Figure getFigure() {
         return figure;
+    }
+
+
+    public int getCurrentExpenses() {
+        return currentExpenses;
+    }
+
+    public int getSurplus() {
+        return surplus;
+    }
+
+    public int getCurrentMoney() {
+        return CurrentMoney;
+    }
+
+    public void addCurrentMoney() {
+        CurrentMoney+=surplus;
     }
 }
