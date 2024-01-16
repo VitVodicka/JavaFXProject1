@@ -20,7 +20,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('board.png'); -fx-background-size: cover;" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxproject1.HelloController">
   <children>
     <VBox layoutX="600" layoutY="10">
-      <Label fx:id="titleLabel" text="Main Title">
+      <Label fx:id="titleLabel" text="Na tahu je hráč 1">
         <font>
           <javafx.scene.text.Font name="Tahoma" size="35.0" />
         </font>

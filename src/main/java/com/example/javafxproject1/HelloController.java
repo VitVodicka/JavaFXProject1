@@ -133,15 +133,16 @@ public class HelloController {
         game.generatePolicka();
 
 
+        hideOppurtunity();
 
-        //salarydescription.setText(String.valueOf(playerInfoData.get(0).getPlat()));
         List<Player> playerList = game.getListPlayer();
         ObservableList<Player> observablePlayerList = FXCollections.observableArrayList(playerList);
 
         TableHandler.initializeMonthlyTable(monthlyTable, mortgageHouseColumn, mortgageCarColumn, creditCardDebtColumn, observablePlayerList);
         TableHandler.initializeDebtTable(debtTable, mortgagehouse, mortgagecar, creditcarddebt, observablePlayerList);
         TableHandler.initializeInfoTable(infotable, nameColumn, surnameColumn, proffesionColumn, observablePlayerList);
-        TableHandler.initializeSalary(salarydescription, playerList.get(0));
+        TableHandler.initializeSalary(salarydescription, observablePlayerList);
+
 
 
 
@@ -184,6 +185,16 @@ public class HelloController {
                 Platform.runLater(() -> {
                     titleLabel.setText(game.turnSelection());
                     game.moveFigure(dice.choosingNumber());
+                    game.turnSwitching();
+
+                    List<Player> playerList = game.getListPlayer();
+                    ObservableList<Player> observablePlayerList = FXCollections.observableArrayList(playerList);
+
+                    TableHandler.initializeMonthlyTable(monthlyTable, mortgageHouseColumn, mortgageCarColumn, creditCardDebtColumn, observablePlayerList);
+                    TableHandler.initializeDebtTable(debtTable, mortgagehouse, mortgagecar, creditcarddebt, observablePlayerList);
+                    TableHandler.initializeInfoTable(infotable, nameColumn, surnameColumn, proffesionColumn, observablePlayerList);
+                    TableHandler.initializeSalary(salarydescription, observablePlayerList);
+
 
                 });
 

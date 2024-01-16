@@ -22,6 +22,7 @@ public class GameEngine {
     private ImageView player4;
     private List<Policko> listPolicka;
     private HelloController helloController;
+    public static int PlayerTurn;
 
 
     GameEngine(ImageView player1, ImageView player2, ImageView player3, ImageView player4, HelloController helloController) {
@@ -287,8 +288,9 @@ public class GameEngine {
                 break;
 
         }
-        ;
+
     }
+
 
     private void generatingUsersAndFiguresConfig(int numberOfPlayers, List<Figure>figurelist) {
         Files f = new Files();
@@ -364,6 +366,31 @@ public class GameEngine {
         Platform.exit();
     }
 
+    public void turnSwitching(){
+        int counter=0;
+        int numberOfPlayers = listPlayer.size();
+
+        for (Player pl : listPlayer) {
+            if (pl.getFigure().isTurn()) {
+                if (listPlayer.size() > 1) {
+                    pl.getFigure().setTurn(false); // Odeber turn od aktuálního hráče
+
+                    if (counter < numberOfPlayers - 1) {
+                        // Pokud není poslední hráč, předáme turn následujícímu hráči
+                        listPlayer.get(counter + 1).getFigure().setTurn(true);
+                    } else {
+                        // Pokud je poslední hráč, předáme turn prvnímu hráči
+                        listPlayer.get(0).getFigure().setTurn(true);
+                    }
+
+                    break; // Máme aktuálního hráče, můžeme ukončit smyčku
+                }
+            }
+            counter++;
+        }
+
+    }
+
     public String turnSelection() {
         int counter = 0;
         String text = "Na tahu je hráč ";
@@ -384,8 +411,17 @@ public class GameEngine {
 
 
     public void moveFigure(int steps) {
-        int currentPolickoIndex = listPlayer.get(0).getFigure().getCurrentPolickoIndex();
-        System.out.println(listPolicka.size());
+        int counter=0;
+        int turnCounter=0;
+        for (Player pl : listPlayer) {
+            if(listPlayer.get(counter).getFigure().isTurn()){
+                turnCounter=counter;
+            }
+            counter++;
+        }
+        int currentPolickoIndex = listPlayer.get(turnCounter).getFigure().getCurrentPolickoIndex();
+
+
         for (int i = 0; i < steps; i++) {
 
             //if it would go over the array
@@ -394,18 +430,23 @@ public class GameEngine {
             } else {
                 currentPolickoIndex++;
             }
-            listPlayer.get(0).getFigure().onMoveFigure(listPolicka.get(currentPolickoIndex).getX(), listPolicka.get(currentPolickoIndex).getY());
-            listPlayer.get(0).getFigure().setCurrentPolickoIndex(currentPolickoIndex);
-            try {
-                Thread.sleep(200); // Adjust the sleep duration as needed
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+            listPlayer.get(turnCounter).getFigure().onMoveFigure(listPolicka.get(currentPolickoIndex).getX(), listPolicka.get(currentPolickoIndex).getY());
+            listPlayer.get(turnCounter).getFigure().setCurrentPolickoIndex(currentPolickoIndex);
+        }
+
+
+
+        try {
+            Thread.sleep(200); // Adjust the sleep duration as needed
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         typeOfPolicko(currentPolickoIndex);
-
-
+        GameEngine.PlayerTurn=turnCounter;
     }
+
+
 
     private void typeOfPolicko(int polickoindexNumber) {
 
@@ -543,13 +584,7 @@ public class GameEngine {
 
     }
 
-    private void displayUserData(Player player) {
 
-    }
-
-    private void initializePlayerTables() {
-
-    }
 
     private void hideProperties() {
         helloController.property1.setVisible(false);

@@ -21,11 +21,10 @@ public class TableHandler {
         creditCardDebtColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCredit_card_payment()).asObject());
 
         ObservableList<MonthlyExpenses> observableData = FXCollections.observableArrayList();
-        for (Player player : players) {
-            MonthlyExpenses monthlyExpenses = player.getMesicne();
+
+            MonthlyExpenses monthlyExpenses = players.get(GameEngine.PlayerTurn).getMesicne();
             observableData.add(monthlyExpenses);
-        }
-        table.setItems(observableData);
+            table.setItems(observableData);
     }
 
     public static void initializeDebtTable(TableView<Debts> table, TableColumn<Debts, Integer> mortgageHouseColumn,
@@ -36,10 +35,9 @@ public class TableHandler {
         creditCardDebtColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCredit_card_debt()).asObject());
 
         ObservableList<Debts> observableDataDebt = FXCollections.observableArrayList();
-        for (Player player : players) {
-            Debts debt = player.getDluhy();
-            observableDataDebt.add(debt);
-        }
+        Debts debt = players.get(GameEngine.PlayerTurn).getDluhy();
+        observableDataDebt.add(debt);
+
         table.setItems(observableDataDebt);
     }
 
@@ -51,15 +49,15 @@ public class TableHandler {
         professionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProfese()));
 
         ObservableList<Player> playerInfoData = FXCollections.observableArrayList();
-        for (Player player : players) {
-            Player pl = new Player(player.getJmeno(), player.getPrijmeni(), player.getProfese());
-            playerInfoData.add(pl);
-        }
+        Player pl = new Player(players.get(GameEngine.PlayerTurn).getJmeno(), players.get(GameEngine.PlayerTurn).getPrijmeni(), players.get(GameEngine.PlayerTurn).getProfese());
+        playerInfoData.add(pl);
+
         table.setItems(playerInfoData);
 
 
     }
-    public static void initializeSalary(Label salarydescription, Player players){
-        salarydescription.setText(String.valueOf(players.getPlat()));
+    public static void initializeSalary(Label salarydescription, ObservableList<Player> players){
+
+        salarydescription.setText(String.valueOf(players.get(GameEngine.PlayerTurn).getPlat()));
     }
 }
