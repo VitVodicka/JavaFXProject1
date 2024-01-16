@@ -30,6 +30,11 @@ public class Player {
         this.mesicne = mesicne;
         this.dluhy = dluhy;
     }
+    public Player(String jmeno, String prijmeni, String profese) {
+        this.jmeno = jmeno;
+        this.prijmeni = prijmeni;
+        this.profese = profese;
+    }
 
     // Gettery a Settery
 

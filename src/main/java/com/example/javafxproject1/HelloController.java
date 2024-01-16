@@ -1,9 +1,11 @@
 package com.example.javafxproject1;
 
+import com.example.javafxproject1.PlayerClasses.Debts;
 import com.example.javafxproject1.PlayerClasses.MonthlyExpenses;
 import com.example.javafxproject1.PlayerClasses.Player;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import javafx.stage.Screen;
 import javafx.scene.shape.Circle;
 
 import java.io.File;
+import java.util.List;
 import java.util.Random;
 
 public class HelloController {
@@ -78,6 +81,35 @@ public class HelloController {
     private TableColumn<MonthlyExpenses, Integer> creditCardDebtColumn;
 
 
+    @FXML
+    private TableView<Debts> debtTable;
+
+    @FXML
+    private TableColumn<Debts, Integer> mortgagehouse;
+
+    @FXML
+    private TableColumn<Debts, Integer> mortgagecar;
+
+    @FXML
+    private TableColumn<Debts, Integer> creditcarddebt;
+
+
+    @FXML
+    private TableView<Player> infotable;
+
+    @FXML
+    private TableColumn<Player, String> nameColumn;
+
+    @FXML
+    private TableColumn<Player, String> surnameColumn;
+
+    @FXML
+    private TableColumn<Player, String> proffesionColumn;
+
+    @FXML
+    private Label salarydescription;
+
+
 
 
     @FXML
@@ -97,43 +129,20 @@ public class HelloController {
         diceImage.setLayoutX(screenWidth-250);
 
 
-        //hideOppurtunity();
+
         game.generatePolicka();
-        try {
-            mortgageHouseColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getHome_payment()).asObject());
-            mortgageCarColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCar_loan()).asObject());
-            creditCardDebtColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCredit_card_payment()).asObject());
 
 
-            ObservableList<MonthlyExpenses> observableData = FXCollections.observableArrayList();
-            for (Player player : game.getListPlayer()) {
-                MonthlyExpenses monthlyExpenses = player.getMesicne();
-                observableData.add(monthlyExpenses);
-            }
 
-            // Debug print to check the content of observableData
-            System.out.println("Observable Data: " + observableData);
+        //salarydescription.setText(String.valueOf(playerInfoData.get(0).getPlat()));
+        List<Player> playerList = game.getListPlayer();
+        ObservableList<Player> observablePlayerList = FXCollections.observableArrayList(playerList);
 
-            monthlyTable.setItems(observableData);
+        TableHandler.initializeMonthlyTable(monthlyTable, mortgageHouseColumn, mortgageCarColumn, creditCardDebtColumn, observablePlayerList);
+        TableHandler.initializeDebtTable(debtTable, mortgagehouse, mortgagecar, creditcarddebt, observablePlayerList);
+        TableHandler.initializeInfoTable(infotable, nameColumn, surnameColumn, proffesionColumn, observablePlayerList);
+        TableHandler.initializeSalary(salarydescription, playerList.get(0));
 
-            if (observableData.isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information");
-                alert.setHeaderText(null);
-                alert.setContentText("No data available.");
-                alert.showAndWait();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("An error occurred: " + e.getMessage());
-            alert.showAndWait();
-        }
-        mortgageHouseColumn.setVisible(true);
-        mortgageCarColumn.setVisible(true);
-        creditCardDebtColumn.setVisible(true);
 
 
 

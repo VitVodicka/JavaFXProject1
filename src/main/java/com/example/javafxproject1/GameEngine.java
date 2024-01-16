@@ -5,14 +5,12 @@ import com.example.javafxproject1.PolickaClass.BigDealPolicko;
 import com.example.javafxproject1.PolickaClass.ExpensesPolicko;
 import com.example.javafxproject1.PolickaClass.MarketPolicko;
 import com.example.javafxproject1.PolickaClass.SmallDealPolicko;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
-import java.security.AllPermission;
 import java.util.*;
 
 public class GameEngine {
@@ -192,13 +190,10 @@ public class GameEngine {
     }
 
     public void launchGame() {
-        Files f = new Files();
-        List<Player> playerListJSON= f.readUser();
-        Figure fig1, fig2, fig3, fig4;
-        List<Integer> chosenNumbers= new ArrayList<>();
-        Random random = new Random();
-        int randomCislo;
 
+        Figure fig1, fig2, fig3, fig4;
+
+        int randomCislo;
 
 
         switch (numberOfPlayers) {
@@ -206,15 +201,11 @@ public class GameEngine {
                 fig1 = new Figure(player1);
                 fig1.onShowFigure();
 
-                randomCislo=random.nextInt(playerListJSON.size());
+                List<Figure> figures= new ArrayList<>();
+                figures.add(fig1);
 
-                var JSONShortcut=playerListJSON.get(randomCislo);
 
-
-                Player pl= new Player(JSONShortcut.getJmeno(),JSONShortcut.getPrijmeni(),
-                        JSONShortcut.getPlat(),JSONShortcut.getProfese(),JSONShortcut.getMesicne(),JSONShortcut.getDluhy(),fig1);
-
-                listPlayer.add(pl);
+                generatingUsersAndFiguresConfig(1,figures);
 
                 fig1.setTurn(true);
                 fig1.setCurrentPolickoIndex(0);
@@ -229,27 +220,11 @@ public class GameEngine {
                 fig1.setCurrentPolickoIndex(0);
                 fig2.setCurrentPolickoIndex(0);
 
+                List<Figure> figures1= new ArrayList<>();
+                figures1.add(fig1);
+                figures1.add(fig2);
 
-                randomCislo=random.nextInt(playerListJSON.size());
-                chosenNumbers.add(randomCislo);
-
-                var JSONShortcut2=playerListJSON.get(randomCislo);
-
-                Player pl1= new Player(JSONShortcut2.getJmeno(),JSONShortcut2.getPrijmeni(),
-                        JSONShortcut2.getPlat(),JSONShortcut2.getProfese(),JSONShortcut2.getMesicne(),JSONShortcut2.getDluhy(),fig1);
-
-                listPlayer.add(pl1);
-                randomCislo=random.nextInt(playerListJSON.size());
-
-                while(chosenNumbers.contains(randomCislo)){
-                    randomCislo=random.nextInt(playerListJSON.size());
-
-
-                }
-
-                Player pl2= new Player(JSONShortcut2.getJmeno(),JSONShortcut2.getPrijmeni(),
-                        JSONShortcut2.getPlat(),JSONShortcut2.getProfese(),JSONShortcut2.getMesicne(),JSONShortcut2.getDluhy(),fig1);
-                listPlayer.add(pl2);
+                generatingUsersAndFiguresConfig(2,figures1);
 
 
 
@@ -268,40 +243,13 @@ public class GameEngine {
                 fig2.setCurrentPolickoIndex(0);
                 fig3.setCurrentPolickoIndex(0);
 
+                List<Figure> figures2= new ArrayList<>();
+                figures2.add(fig1);
+                figures2.add(fig2);
+                figures2.add(fig3);
 
-                randomCislo=random.nextInt(playerListJSON.size());
-                chosenNumbers.add(randomCislo);
+                generatingUsersAndFiguresConfig(3,figures2);
 
-                var JSONShortcut3=playerListJSON.get(randomCislo);
-
-                Player pl1_3= new Player(JSONShortcut3.getJmeno(),JSONShortcut3.getPrijmeni(),
-                        JSONShortcut3.getPlat(),JSONShortcut3.getProfese(),JSONShortcut3.getMesicne(),JSONShortcut3.getDluhy(),fig1);
-
-
-                listPlayer.add(pl1_3);
-                randomCislo=random.nextInt(playerListJSON.size());
-
-                while(chosenNumbers.contains(randomCislo)){
-                    randomCislo=random.nextInt(playerListJSON.size());
-
-
-                }
-
-                Player pl2_3= new Player(JSONShortcut3.getJmeno(),JSONShortcut3.getPrijmeni(),
-                        JSONShortcut3.getPlat(),JSONShortcut3.getProfese(),JSONShortcut3.getMesicne(),JSONShortcut3.getDluhy(),fig1);
-
-                listPlayer.add(pl2_3);
-
-                while(chosenNumbers.contains(randomCislo)){
-                    randomCislo=random.nextInt(playerListJSON.size());
-
-
-                }
-
-                Player pl3_3= new Player(JSONShortcut3.getJmeno(),JSONShortcut3.getPrijmeni(),
-                        JSONShortcut3.getPlat(),JSONShortcut3.getProfese(),JSONShortcut3.getMesicne(),JSONShortcut3.getDluhy(),fig1);
-
-                listPlayer.add(pl3_3);
 
 
                 fig1.setTurn(true);
@@ -317,55 +265,20 @@ public class GameEngine {
                 fig4 = new Figure(player4);
                 fig4.onShowFigure();
 
+                List<Figure> figures3= new ArrayList<>();
+                figures3.add(fig1);
+                figures3.add(fig2);
+                figures3.add(fig3);
+                figures3.add(fig4);
+
+                generatingUsersAndFiguresConfig(4,figures3);
+
                 fig1.setCurrentPolickoIndex(0);
                 fig2.setCurrentPolickoIndex(0);
                 fig3.setCurrentPolickoIndex(0);
                 fig4.setCurrentPolickoIndex(0);
 
 
-                randomCislo=random.nextInt(playerListJSON.size());
-                chosenNumbers.add(randomCislo);
-
-                var JSONShortcut4=playerListJSON.get(randomCislo);
-
-                Player pl1_4= new Player(JSONShortcut4.getJmeno(),JSONShortcut4.getPrijmeni(),
-                        JSONShortcut4.getPlat(),JSONShortcut4.getProfese(),JSONShortcut4.getMesicne(),JSONShortcut4.getDluhy(),fig1);
-
-                randomCislo=random.nextInt(playerListJSON.size());
-                listPlayer.add(pl1_4);
-
-
-                while(chosenNumbers.contains(randomCislo)){
-                    randomCislo=random.nextInt(playerListJSON.size());
-
-
-                }
-                Player pl2_4= new Player(JSONShortcut4.getJmeno(),JSONShortcut4.getPrijmeni(),
-                        JSONShortcut4.getPlat(),JSONShortcut4.getProfese(),JSONShortcut4.getMesicne(),JSONShortcut4.getDluhy(),fig1);
-
-                listPlayer.add(pl2_4);
-
-                while(chosenNumbers.contains(randomCislo)){
-                    randomCislo=random.nextInt(playerListJSON.size());
-
-
-                }
-
-                Player pl3_4= new Player(JSONShortcut4.getJmeno(),JSONShortcut4.getPrijmeni(),
-                        JSONShortcut4.getPlat(),JSONShortcut4.getProfese(),JSONShortcut4.getMesicne(),JSONShortcut4.getDluhy(),fig1);
-
-                listPlayer.add(pl3_4);
-
-                while(chosenNumbers.contains(randomCislo)){
-                    randomCislo=random.nextInt(playerListJSON.size());
-
-
-                }
-
-                Player pl4_4= new Player(JSONShortcut4.getJmeno(),JSONShortcut4.getPrijmeni(),
-                        JSONShortcut4.getPlat(),JSONShortcut4.getProfese(),JSONShortcut4.getMesicne(),JSONShortcut4.getDluhy(),fig1);
-
-                listPlayer.add(pl4_4);
 
 
 
@@ -375,6 +288,64 @@ public class GameEngine {
 
         }
         ;
+    }
+
+    private void generatingUsersAndFiguresConfig(int numberOfPlayers, List<Figure>figurelist) {
+        Files f = new Files();
+        List<Player> playerListJSON = f.readUser();
+        List<Integer> chosenNumbers = new ArrayList<>();
+
+        Random random = new Random();
+        int randomCislo, randomCislo2, randomCislo3;
+
+
+        if (numberOfPlayers == 1) {
+            randomCislo = random.nextInt(playerListJSON.size());
+            var JSONShortcut = playerListJSON.get(randomCislo);
+
+            Player pl = new Player(JSONShortcut.getJmeno(), JSONShortcut.getPrijmeni(),
+                    JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(0));
+
+            listPlayer.add(pl);
+        } else {
+            for (int i = 0; i < numberOfPlayers; i++) {
+                do {
+                    if (i == 0) {
+                        randomCislo2 = random.nextInt(playerListJSON.size());
+                        var JSONShortcut = playerListJSON.get(randomCislo2);
+
+                        Player pl = new Player(JSONShortcut.getJmeno(), JSONShortcut.getPrijmeni(),
+                                JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(i));
+
+                        listPlayer.add(pl);
+                        chosenNumbers.add(randomCislo2);
+                        break;
+                    } else {
+                        randomCislo3 = random.nextInt(playerListJSON.size());
+                        if (!chosenNumbers.contains(randomCislo3)) {
+                            var JSONShortcut = playerListJSON.get(randomCislo3);
+
+                            Player pl = new Player(JSONShortcut.getJmeno(), JSONShortcut.getPrijmeni(),
+                                    JSONShortcut.getPlat(), JSONShortcut.getProfese(), JSONShortcut.getMesicne(), JSONShortcut.getDluhy(), figurelist.get(i));
+
+                            listPlayer.add(pl);
+                            chosenNumbers.add(randomCislo3);
+                            break;
+                        }
+                    }
+                }while (chosenNumbers.size() > 0) ;
+
+
+
+
+            }
+
+
+        }
+
+
+
+
     }
 
     ;
@@ -406,7 +377,8 @@ public class GameEngine {
         return text;
 
     }
-    public List<Player> getListPlayer(){
+
+    public List<Player> getListPlayer() {
         return listPlayer;
     }
 
@@ -417,10 +389,9 @@ public class GameEngine {
         for (int i = 0; i < steps; i++) {
 
             //if it would go over the array
-            if(currentPolickoIndex==15){
-                currentPolickoIndex=0;
-            }
-            else {
+            if (currentPolickoIndex == 15) {
+                currentPolickoIndex = 0;
+            } else {
                 currentPolickoIndex++;
             }
             listPlayer.get(0).getFigure().onMoveFigure(listPolicka.get(currentPolickoIndex).getX(), listPolicka.get(currentPolickoIndex).getY());
@@ -435,38 +406,35 @@ public class GameEngine {
 
 
     }
-    private void typeOfPolicko(int polickoindexNumber){
+
+    private void typeOfPolicko(int polickoindexNumber) {
 
         Policko currentPolicko = listPolicka.get(polickoindexNumber);
         Oppurtunity op = new Oppurtunity();
-
 
 
         if (currentPolicko.isBigDeal()) {
             hideProperties();
 
 
-            BigDealPolicko deal=op.LoadBigDeal();
+            BigDealPolicko deal = op.LoadBigDeal();
 
-            String descr=deal.getDescription();
-            String ticker=deal.getTicker();
-            int price=deal.getPrice();
-            int dividend= deal.getDividend();
+            String descr = deal.getDescription();
+            String ticker = deal.getTicker();
+            int price = deal.getPrice();
+            int dividend = deal.getDividend();
 
-            double yield=0;
-            try{
+            double yield = 0;
+            try {
                 yield = ((double) dividend / price) * 100;  // Calculate the yield as a percentage directly
                 yield = Math.round(yield);
 
 
-            }
-            catch (ArithmeticException e){
+            } catch (ArithmeticException e) {
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setContentText(String.valueOf(price)+","+String.valueOf(dividend));
+                alert2.setContentText(String.valueOf(price) + "," + String.valueOf(dividend));
                 alert2.showAndWait();
             }
-
-
 
 
             hideProperties();
@@ -475,11 +443,11 @@ public class GameEngine {
             helloController.titleLabel2.setText("Big deal");
             helloController.descriptionLabel.setText(descr);
 
-            showproperties(helloController.property1,helloController.property2,helloController.property3,null);
+            showproperties(helloController.property1, helloController.property2, helloController.property3, null);
 
-            helloController.property1.setText("Cena:"+String.valueOf(price));
-            helloController.property2.setText("Měsíční příjem:"+String.valueOf(dividend)+"Kč");
-            helloController.property3.setText("Roční výnos :"+String.valueOf(yield)+"%");
+            helloController.property1.setText("Cena:" + String.valueOf(price));
+            helloController.property2.setText("Měsíční příjem:" + String.valueOf(dividend) + "Kč");
+            helloController.property3.setText("Roční výnos :" + String.valueOf(yield) + "%");
 
 
         } else if (currentPolicko.isSmallDeal()) {
@@ -497,7 +465,7 @@ public class GameEngine {
             try {
                 if (deal.getDividend() > -1) {
 
-                    yield = ((double) dividend*12 / price) * 100;  // Calculate the yield as a percentage directly
+                    yield = ((double) dividend * 12 / price) * 100;  // Calculate the yield as a percentage directly
                     yield = Math.round(yield);
                 }
 
@@ -513,7 +481,7 @@ public class GameEngine {
             helloController.titleLabel2.setText("Small deal");
             helloController.descriptionLabel.setText(descr);
 
-            helloController.property1.setText("Cena:" + String.valueOf(price)+"Kč");
+            helloController.property1.setText("Cena:" + String.valueOf(price) + "Kč");
 
             if (deal.getDividend() > 0) {
                 helloController.property2.setText("Měsíční příjem:" + String.valueOf(deal.getDividend()) + "Kč");
@@ -521,7 +489,7 @@ public class GameEngine {
                 showproperties(helloController.property1, helloController.property2, helloController.property3, null);
             } else {
                 // Handle case when there is no dividend
-                showproperties(helloController.property1, null,null, null);
+                showproperties(helloController.property1, null, null, null);
             }
 
         } else if (currentPolicko.isNothing()) {
@@ -531,23 +499,22 @@ public class GameEngine {
             hideProperties();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            MarketPolicko exp=op.LoadMarket();
+            MarketPolicko exp = op.LoadMarket();
 
             helloController.descriptionLabel.setText(exp.getDescription());
             showproperties(helloController.property1, null, null, null);
 
-            if(exp.getAmount()!=-1&&exp.getType()!=null&& exp.isProcent()==false){
+            if (exp.getAmount() != -1 && exp.getType() != null && exp.isProcent() == false) {
 
-                helloController.property1.setText("Cena se změnila na:"+String.valueOf(exp.getAmount())+"Kč");
-                helloController.property2.setText("U aktiva:"+String.valueOf(exp.getType()));
+                helloController.property1.setText("Cena se změnila na:" + String.valueOf(exp.getAmount()) + "Kč");
+                helloController.property2.setText("U aktiva:" + String.valueOf(exp.getType()));
                 showproperties(helloController.property1, helloController.property2, null, null);
 
 
+            } else if (exp.getAmount() != -1 && exp.getType() != null && exp.isProcent() == true) {
 
-            } else if (exp.getAmount()!=-1&&exp.getType()!=null&& exp.isProcent()==true) {
-
-                helloController.property1.setText("Cena se změnila o:"+String.valueOf(exp.getAmount())+"%");
-                helloController.property2.setText("U aktiva:"+String.valueOf(exp.getType()));
+                helloController.property1.setText("Cena se změnila o:" + String.valueOf(exp.getAmount()) + "%");
+                helloController.property2.setText("U aktiva:" + String.valueOf(exp.getType()));
                 showproperties(helloController.property1, helloController.property2, null, null);
 
             }
@@ -557,16 +524,15 @@ public class GameEngine {
             helloController.titleLabel2.setText("Market");
 
 
-
         } else if (currentPolicko.isExpanses()) {
             hideProperties();
 
-            ExpensesPolicko exp=op.LoadExpenses();
+            ExpensesPolicko exp = op.LoadExpenses();
             helloController.descriptionLabel.setText(exp.getDescription());
             helloController.showOppurtunity();
             helloController.titleLabel2.setText("Náklady");
 
-            helloController.property1.setText("Cena:" + String.valueOf(exp.getAmount())+"Kč");
+            helloController.property1.setText("Cena:" + String.valueOf(exp.getAmount()) + "Kč");
             showproperties(helloController.property1, null, null, null);
 
 
@@ -575,33 +541,35 @@ public class GameEngine {
         }
 
 
+    }
 
+    private void displayUserData(Player player) {
 
     }
-    private void displayUserData(Player player){
+
+    private void initializePlayerTables() {
 
     }
-    private void initializePlayerTables(){
 
-    }
-    private void hideProperties(){
+    private void hideProperties() {
         helloController.property1.setVisible(false);
         helloController.property2.setVisible(false);
         helloController.property3.setVisible(false);
         helloController.property4.setVisible(false);
     }
-    private void showproperties(Label property1,Label property2,Label property3,Label property4){
+
+    private void showproperties(Label property1, Label property2, Label property3, Label property4) {
         //Thread.sleep(100);
-        if(property1!=null){
+        if (property1 != null) {
             property1.setVisible(true);
         }
-        if(property2!=null){
+        if (property2 != null) {
             property2.setVisible(true);
         }
-        if(property3!=null){
+        if (property3 != null) {
             property3.setVisible(true);
         }
-        if(property4!=null){
+        if (property4 != null) {
             property4.setVisible(true);
         }
     }
