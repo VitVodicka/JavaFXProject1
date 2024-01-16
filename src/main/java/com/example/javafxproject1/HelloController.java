@@ -25,6 +25,8 @@ public class HelloController {
     Random random = new Random();
     Dice dice;
     GameEngine game;
+    public static boolean isLayoff;
+    public static boolean isExpense;
     @FXML
     private AnchorPane storyboard;
     @FXML
@@ -155,7 +157,7 @@ public class HelloController {
 
 
 
-            diceImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        diceImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 // Call the method you want to execute on ImageView click
@@ -203,6 +205,7 @@ public class HelloController {
                     TableHandler.setCurrentExpenses(currentExpenses, observablePlayerList);
 
 
+
                 });
 
             } catch (InterruptedException e) {
@@ -227,23 +230,39 @@ public class HelloController {
     public void OKhideOppurtunity(ActionEvent actionEvent) {
         String quantityText = quantityField.getText();
 
-            try {
+        try {
+            if(quantityText==""){
                 int quantityint=Integer.parseInt(quantityText);
                 if(quantityint>0){
                     hideOppurtunity();
                     diceImage.setDisable(false);
                 }
-                else {
-                    Alert al = new Alert(Alert.AlertType.INFORMATION);
-                    al.setContentText("Nejsou peníze nebo špatný formát");
-                    al.showAndWait();
-                }
+            }
+            else if(isLayoff||isExpense){
+                if(isExpense){
+                    List<Player> playerList = game.getListPlayer();
+                    ObservableList<Player> observablePlayerList = FXCollections.observableArrayList(playerList);
 
-            } catch (NumberFormatException e) {
+                    Oppurtunity.deductExpenseFromPlayer(game.getListPlayer());
+                    TableHandler.setCurrentMoney(currentMoney, observablePlayerList);
+                }
+                hideOppurtunity();
+                diceImage.setDisable(false);
+            }
+            else {
                 Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setContentText("Nejsou peníze nebo špatný formát");
                 al.showAndWait();
             }
+
+        } catch (NumberFormatException e) {
+            Alert al = new Alert(Alert.AlertType.INFORMATION);
+            al.setContentText("Nejsou peníze nebo špatný formát");
+            al.showAndWait();
+        }
+        HelloController.isLayoff =false;
+        HelloController.isExpense =false;
+
 
     }
     public void hideCancelButton(){
@@ -254,4 +273,13 @@ public class HelloController {
         cancelbutton.setVisible(true);
 
     }
+    public void hideQuantityField(){
+        quantityField.setVisible(false);
+
+    }
+    public void showQuantityField(){
+        quantityField.setVisible(true);
+
+    }
+
 }

@@ -13,8 +13,9 @@ public class Oppurtunity {
     static List<MarketPolicko> MarketList= new ArrayList<MarketPolicko>();
     static List<SmallDealPolicko> SmallDealList= new ArrayList<SmallDealPolicko>();
     static List<BigDealPolicko> BigDealList= new ArrayList<BigDealPolicko>();
+    static int expenseAmount;
     public void LoadIncome(Player pl){
-        pl.addCurrentMoney();
+        pl.addIncomeMoney();
 
     }
     public BigDealPolicko LoadBigDeal(){
@@ -55,10 +56,19 @@ public class Oppurtunity {
         return ExpensesList.get(randomIndex);
     }
 
-    public void LoadLayoff(){
 
+    public static void deductExpenseFromPlayer(List<Player> listPlayer) {
+        int turnCounter = 0;
+
+        for (Player pl : listPlayer) {
+            if (listPlayer.get(turnCounter).getFigure().isTurn()) {
+                // Voláme metodu MoneyLayoff na aktuálním hráči
+                pl.subtractMoney(Oppurtunity.expenseAmount);
+                break;
+            }
+            turnCounter++;
+        }
     }
-
 
 
 

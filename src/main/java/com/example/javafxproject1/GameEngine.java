@@ -27,6 +27,7 @@ public class GameEngine {
     public static int PlayerTurn;
 
 
+
     GameEngine(ImageView player1, ImageView player2, ImageView player3, ImageView player4, HelloController helloController) {
         this.player1 = player1;
         this.player2 = player2;
@@ -576,6 +577,8 @@ public class GameEngine {
         } else if (currentPolicko.isExpanses()) {
             hideProperties();
 
+            HelloController.isExpense =true;
+
             ExpensesPolicko exp = op.LoadExpenses();
             helloController.descriptionLabel.setText(exp.getDescription());
             helloController.showOppurtunity();
@@ -584,11 +587,16 @@ public class GameEngine {
             helloController.property1.setText("Cena:" + String.valueOf(exp.getAmount()) + "Kč");
             showproperties(helloController.property1, null, null, null);
             helloController.hideCancelButton();
+            helloController.hideQuantityField();
 
 
         } else if (currentPolicko.isLayoff()) {
             helloController.hideCancelButton();
-            op.LoadLayoff();
+            helloController.hideQuantityField();
+
+            HelloController.isLayoff =true;
+
+
         }
 
 
@@ -620,6 +628,10 @@ public class GameEngine {
             property4.setVisible(true);
         }
         helloController.showCancelButton();
+        helloController.showQuantityField();
+    }
+    public List<Policko> getListPolicek(){
+        return listPolicka;
     }
 
 

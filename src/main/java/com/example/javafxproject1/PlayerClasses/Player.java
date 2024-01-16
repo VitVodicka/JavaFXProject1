@@ -113,7 +113,13 @@ public class Player {
         return CurrentMoney;
     }
 
-    public void addCurrentMoney() {
+    public void addIncomeMoney() {
         CurrentMoney+=surplus;
+    }
+    public void subtractMoney(int amount){
+        CurrentMoney-=amount;
+    }
+    public void MoneyLayoff(){
+        CurrentMoney-=2*currentExpenses;
     }
 }
